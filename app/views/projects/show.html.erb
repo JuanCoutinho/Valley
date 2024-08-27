@@ -1,10 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-3xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-xl space-y-6">
+  <!-- Notice Message -->
+  <% if notice %>
+    <p class="text-green-400 bg-gray-800 p-4 rounded-md border border-green-600">
+      <%= notice %>
+    </p>
+  <% end %>
 
-<%= render @project %>
+  <!-- Rendered Project Details -->
+  <div class="bg-gray-800 p-6 rounded-lg shadow-md">
+    <%= render @project %>
+  </div>
 
-<div>
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
+  <!-- Actions -->
+  <div class="flex justify-between items-center mt-6 space-x-4">
+    <div class="flex space-x-4">
+      <%= link_to "Editar este projeto", edit_project_path(@project), class: "bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" %>
+      <%= link_to "Voltar a Projetos", projects_path, class: "bg-gray-600 text-white rounded-md py-2 px-4 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200" %>
+    </div>
+    <%= link_to "Apagar este projeto", @project, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Tem certeza de que deseja apagar este projeto?" }, class: "bg-red-600 text-white rounded-md py-2 px-4 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" %>
 
-  <%= button_to "Destroy this project", @project, method: :delete %>
+   </div>
 </div>

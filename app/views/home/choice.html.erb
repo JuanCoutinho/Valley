@@ -12,10 +12,6 @@
             background-repeat: no-repeat;
             height: 100vh; 
         }
-
-        .custom-text-size {
-            font-size: 30rem;
-        }
     </style>
 </head>
 <body class="fundo m-0">
@@ -56,11 +52,17 @@
                     </div>
                 </div>
             </nav>
-            <div id="home" class="px-4 mx-auto max-w-screen-xl text-center py-24 ">
-            <center>   
-            <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center hidden md:block text-center', style: 'height: 220px; width: auto;' %>
-            <p class="mb-8 text-lg font-bold text-gray-300 lg:text-3xl">Conectando o amanhã.</p>
-            <center>
+            <div id="home" class="px-4 mx-auto max-w-screen-xl text-center flex flex-col md:flex-row items-center justify-center">
+                <div class="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-12">
+                    <div class="hidden md:flex md:flex-shrink-0 md:w-1/2">
+                        <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'w-full h-auto', style: 'max-height: 550px;' %>
+                    </div>
+                    <div class="flex flex-col items-center space-y-6">
+                        <%= link_to 'Quero publicar projetos', new_user_session_path, class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-12 py-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full max-w-xs' %>
+                        <span class="text-white text-2xl">Ou</span>
+                        <%= link_to 'Quero investir em projetos', new_user_registration_path, class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-12 py-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full max-w-xs' %>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

@@ -1,7 +1,14 @@
-<div id="<%= dom_id project %>" class="max-w-xs mx-auto bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden p-4">
-  <div class="flex flex-col h-full">
+<div id="<%= dom_id project %>">
+
     <div class="flex flex-col mb-4">
-      <p class="text-center text-lg font-semibold mb-2">
+
+    <% if project.image.attached? %>
+      <%= image_tag project.image, alt: 'Project Image', class: 'w-64 h-64 object-cover rounded-lg shadow-md border border-gray-300' %>
+    <% else %>
+      <p class="text-gray-500">Sem imagem</p>
+    <% end %>
+  
+      <p class="text-center text-lg text-white text-2x1 font-semibold mb-2">
         <%= project.title %>
       </p>
 
@@ -9,9 +16,5 @@
         <%= project.ds_project %>
       </p>
     </div>
-
-    <div class="flex justify-center mt-auto">
-      <%= link_to "Show this project", project, class: "text-blue-400 hover:text-blue-500 hover:underline transition ease-in-out duration-200" %>
-    </div>
   </div>
-</div>
+

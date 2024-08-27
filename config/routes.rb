@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   
   root "home#index"
   get 'choice', to: 'home#choice'
+  get 'terms', to: 'home#terms'
 end
