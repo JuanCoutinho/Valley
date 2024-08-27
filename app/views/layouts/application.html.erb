@@ -18,7 +18,11 @@
     <%= render 'shared/notice_alert' %>
     
     <%= yield %>
-    
+
+    <% unless controller_name == 'home'%>
+      <%= render 'shared/footer' %>
+    <% end %>
+   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>

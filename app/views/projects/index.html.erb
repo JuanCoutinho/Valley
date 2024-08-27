@@ -32,7 +32,19 @@
         </h1>
         <%= link_to "Novo Projeto", new_project_path, class: "bg-blue-600 text-white py-2 px-4 lg:py-3 lg:px-6 rounded-lg shadow-lg border border-blue-700 hover:bg-blue-700 transition ease-in-out duration-300" %>
       </section>
-
+<style>
+    @keyframes run {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 0%; }
+    }
+    .ribbon {
+      background: linear-gradient(to right, #00bfae, #1de9b6, #4db6ac, #80cbc4, #00bcd4, #26c6da, #4dd0e1);
+      background-size: 300% 100%;
+      animation: run 5s linear infinite;
+    }
+  </style>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+  <div class="ribbon w-full h-1 rounded-md"></div>
       <!-- Projects list -->
       <div id="projects" class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <% @projects.each do |project| %>

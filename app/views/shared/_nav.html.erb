@@ -1,6 +1,6 @@
 <nav class="bg-gray-900 border-b border-gray-700 fixed top-0 left-0 w-full ">
   <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
-    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-12 w-12 hidden md:block' %>
+    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-24 w-24 hidden md:block ' %>
 
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 rounded-lg md:hidden">
       <span class="sr-only">Open main menu</span>
@@ -12,6 +12,9 @@
     <div class="hidden md:flex md:items-center md:space-x-8 md:ml-auto">
       <%= link_to "Home", root_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
       <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+     
       <% unless user_signed_in? %>
         <%= link_to "Cadastrar", new_user_registration_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
         <%= link_to "Entrar", new_user_session_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
@@ -23,7 +26,6 @@
     </div>
   </div>
 
-  <!-- Mobile Menu -->
   <div id="navbar-default" class="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 md:hidden hidden">
     <div class="flex justify-between items-center p-4">
       <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-10 w-10' %>
@@ -45,5 +47,5 @@
       <% end %>
     </div>
   </div>
-</nav>
-<br><br><br>
+</nav><br><br><br>
+<br><br>
