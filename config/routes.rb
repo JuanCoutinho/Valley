@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  root "home#index"
+  
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :projects
   
-  root "home#index"
   get 'choice', to: 'home#choice'
   get 'terms', to: 'home#terms'
+   get 'perfil', to: 'users#perfil', as: 'perfil'
 end

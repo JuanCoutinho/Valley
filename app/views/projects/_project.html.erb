@@ -1,22 +1,22 @@
 <div id="<%= dom_id project %>" class="flex justify-center mb-4">
-    <div class="max-w-sm w-full rounded-lg shadow-md overflow-hidden">
-      
-      <% if project.image.attached? %>
-        <%= image_tag project.image, alt: 'Project Image', class: 'w-full h-64 object-cover' %>
-      <% else %>
-        <div class="w-full h-64 bg-gray-100 flex items-center justify-center">
-          <p class="text-gray-500 text-lg">Sem imagem</p>
-        </div>
-      <% end %>
-
-      <div class="p-6">
-        <p class="text-center text-xl text-2x1 font-semibold text-gray-100 mb-2">
-          <%= project.title %>
-        </p>
-
-        <p class="text-center text-gray-100 text-m">
-          <%= project.ds_project %>
-        </p>
+  <div class="w-full max-w-xs rounded-lg shadow-md overflow-hidden">
+    <% if project.image.attached? %>
+      <%= image_tag project.image, alt: 'Project Image', class: 'w-full h-40 object-cover' %>
+    <% else %>
+      <div class="w-full h-40 bg-gray-100 flex items-center justify-center">
+        <p class="text-gray-500 text-lg">Sem imagem</p>
       </div>
+    <% end %>
+
+    <div class="p-4">
+      <p class="text-center text-lg font-semibold text-gray-100 mb-2">
+        <%= project.title %>
+      </p>
+
+      <p class="text-center text-gray-100 text-xs mb-4">
+        <%= project.ds_project %>
+      </p>
+      <td><%= project.user.email %></td> 
     </div>
   </div>
+</div>

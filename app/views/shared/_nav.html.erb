@@ -1,6 +1,6 @@
-<nav class="bg-gray-900 border-b border-gray-700 fixed top-0 left-0 w-full ">
-  <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
-    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-24 w-24 hidden md:block ' %>
+<nav class="bg-gray-900 border-b border-gray-700 fixed top-0 left-0 w-full">
+  <div class="max-w-screen-xl mx-auto px-4 py-2 flex items-center justify-between">
+    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-16 w-16 hidden md:block' %>
 
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 rounded-lg md:hidden">
       <span class="sr-only">Open main menu</span>
@@ -9,26 +9,26 @@
       </svg>
     </button>
 
-    <div class="hidden md:flex md:items-center md:space-x-8 md:ml-auto">
-      <%= link_to "Home", root_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-     
+    <div class="hidden md:flex md:items-center md:space-x-6 md:ml-auto">
+      <%= link_to "Home", root_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
+      <%= link_to "Projetos", projects_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
+      <%= link_to "Perfil", perfil_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
+      
       <% unless user_signed_in? %>
-        <%= link_to "Cadastrar", new_user_registration_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-        <%= link_to "Entrar", new_user_session_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+        <%= link_to "Cadastrar", new_user_registration_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
+        <%= link_to "Entrar", new_user_session_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
       <% end %>
       <% if user_signed_in? %>
-        <p class="text-white"><%= current_user.email %></p>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300 ease-in-out" %>
-      <% end %>
+      <div class="flex justify-center items-center">
+      <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" %>
+      </div>
+         <% end %>
     </div>
   </div>
 
   <div id="navbar-default" class="fixed inset-0 bg-gray-900 bg-opacity-90 z-50 md:hidden hidden">
-    <div class="flex justify-between items-center p-4">
-      <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-10 w-10' %>
+    <div class="flex justify-between items-center p-3">
+      <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-8 w-8' %>
       <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 text-gray-400 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-600 rounded-lg">
         <span class="sr-only">Close menu</span>
         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,16 +36,16 @@
         </svg>
       </button>
     </div>
-    <div class="flex flex-col items-center space-y-4 py-6">
-      <%= link_to "Home", root_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+    <div class="flex flex-col items-center space-y-3 py-4">
+      <%= link_to "Home", root_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
       <% unless user_signed_in? %>
-        <%= link_to "Cadastrar", new_user_registration_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
-        <%= link_to "Entrar", new_user_session_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-3 py-2 rounded-md text-lg font-medium" %>
+        <%= link_to "Cadastrar", new_user_registration_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
+        <%= link_to "Entrar", new_user_session_path, class: "text-white hover:text-indigo-400 transition duration-300 ease-in-out px-2 py-1 rounded-md text-base font-medium" %>
       <% end %>
       <% if user_signed_in? %>
-        <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300 ease-in-out" %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-base font-medium transition duration-300 ease-in-out" %>
       <% end %>
     </div>
   </div>
-</nav><br><br><br>
-<br><br>
+</nav>
+<br><br><br>
