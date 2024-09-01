@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Valley
   class Application < Rails::Application
+    config.hosts << /.+\.ngrok-free\.app/ if Rails.env.development?
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
