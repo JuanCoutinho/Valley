@@ -5,24 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil do Usuário</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Adicionando um efeito de sombra mais sutil ao container */
+    .profile-card {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    /* Garantindo que a imagem do perfil não fique amassada */
+    .profile-image {
+      object-fit: cover; /* Garante que a imagem preencha o container mantendo a proporção */
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
+<body class="bg-gray-900 text-gray-100 font-sans flex items-center justify-center min-h-screen p-4 text-center">
+<center>
+  <div class="bg-gray-800 p-6 rounded-lg profile-card max-w-md w-full p-5">
+    <!-- Header -->
+    <h1 class="text-2xl font-bold text-teal-400 mb-6 text-center">Perfil do Usuário</h1>
 
-  <div class="container mx-auto px-4 py-8">
-    <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-      <div class="flex items-center space-x-4">
-        <div>
-        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-24 h-24 rounded-full" %>
-
-          <h1 class="text-2xl font-semibold mb-2">Perfil do Usuário</h1>
-          <p class="text-lg">Bem-vindo ao seu perfil, <span class="font-semibold"><%= @user.email %></span>!</p>
-        </div>
+    <!-- Profile Image and Info -->
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="relative mb-6 md:mb-0">
+        <% if current_user.profile_image.attached? %>
+          <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 profile-image" %>
+        <% else %>
+          <div class="w-32 h-32 bg-gray-600 rounded-full flex items-center justify-center text-gray-300 text-xl">
+            <span>Sem Imagem</span>
+          </div>
+        <% end %>
+      </div>
+      <div class="md:ml-6 text-center md:text-left">
+        <p class="text-lg md:text-xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
+        <p class="text-md md:text-lg">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
       </div>
     </div>
-
-    <div class="mt-8">
-    </div>
   </div>
-
-</body>
+<center>
+  </body>
 </html>

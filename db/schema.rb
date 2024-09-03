@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_30_144356) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_112345) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -42,6 +43,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_144356) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chat_messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "chat_id", null: false
+    t.bigint "sender_id", null: false
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_chat_messages_on_chat_id"
+    t.index ["sender_id"], name: "index_chat_messages_on_sender_id"
+  end
+
+  create_table "chats", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "user_open_chat_id", null: false
+    t.bigint "user_destination_chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_destination_chat_id"], name: "index_chats_on_user_destination_chat_id"
+    t.index ["user_open_chat_id"], name: "index_chats_on_user_open_chat_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "ds_project"
@@ -60,11 +80,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_144356) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_image"
+    t.string "name"
+    t.string "user_type"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chat_messages", "chats"
+  add_foreign_key "chat_messages", "users", column: "sender_id"
+  add_foreign_key "chats", "users", column: "user_destination_chat_id"
+  add_foreign_key "chats", "users", column: "user_open_chat_id"
   add_foreign_key "projects", "users"
 end

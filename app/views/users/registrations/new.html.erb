@@ -1,16 +1,25 @@
 <h2 class="text-3xl font-bold text-white mb-4 text-center mt-6">Cadastrar-se</h2>
 
-<div class="max-w-sm mx-auto bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg">
+<div class="signup mx-auto bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
     <%= render "users/shared/error_messages", resource: resource %>
 
+    <div class="field">
+  <%= f.label :nome, class: "block text-sm font-medium text-gray-300" %>
+  <%= f.text_field :name, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+</div>
+
+<div class="field">
+  <%= f.label :Qual_sua_finalidade?, class: "block text-sm font-medium text-gray-300" %>
+  <%= f.select :user_type, options_for_select([['Ser Investidor nos projetos', 'investor'], ['Quero publicar meus projetos', 'technology_creator']]), {}, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+</div>
     <div class="field">
       <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
     </div>
 
     <div class="field">
-      <%= f.label :password, class: "block text-sm font-medium text-gray-300" %>
+      <%= f.label :Senha, class: "block text-sm font-medium text-gray-300" %>
       <% if @minimum_password_length %>
         <em class="text-gray-400 text-sm">(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
@@ -18,19 +27,67 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-300" %>
+      <%= f.label :Confirmação_de_senha, class: "block text-sm font-medium text-gray-300" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
     </div>
 
     <div class="field">
-    <%= f.label :profile_image, "Profile Image" %><br />
+    <%= f.label :profile_image, "Imagem de Perfil" %><br />
     <%= f.file_field :profile_image %>
   </div>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
+      <%= f.submit "Cadastrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
     </div>
   <% end %>
 
-  <%= render "users/shared/links", class: "mt-6 text-center text-sm text-gray-400" %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var fileInput = document.getElementById('profile_image');
+    var fileLabel = document.querySelector('.file-label');
+    
+    fileInput.addEventListener('change', function() {
+      if (fileInput.files.length > 0) {
+        fileLabel.textContent = fileInput.files[0].name;
+      } else {
+        fileLabel.textContent = 'Escolher arquivo';
+      }
+    });
+  });
+</script>
+
+<style>
+  .signup {
+    max-width: 500px;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .signup {
+      padding: 2rem;
+    }
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #4a5568; /* Gray-600 border */
+    background-color: #2d3748; /* Gray-700 background */
+    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 0.875rem; /* Text size similar to input fields */
+    cursor: pointer;
+  }
+
+  .file-label:hover {
+    background-color: #4a5568; /* Darker gray on hover */
+    border-color: #2b6cb0; /* Indigo-600 border on hover */
+  }
+</style>

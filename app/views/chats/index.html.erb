@@ -1,0 +1,20 @@
+<div class="flex flex-col p-4 space-y-4 bg-gray-900 text-white">
+  <h2 class="text-3xl font-bold mb-4">Chats</h2>
+
+  <% @users.each do |user| %>
+    <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ease-in-out">
+      <div class="flex items-center space-x-4">
+        <% if user.profile_image.attached? %>
+          <%= image_tag rails_blob_url(user.profile_image, only_path: true), class: "w-12 h-12 rounded-full" %>
+        <% else %>
+          <%= image_tag '/images/default_profile_image.png', class: "w-12 h-12 rounded-full" %>
+        <% end %>
+        <div class="flex flex-col">
+          <span class="text-lg font-semibold"><%= user.name %></span>
+          <span class="text-sm text-gray-400"><%= user.user_type %></span>
+        </div>
+      </div>
+      <%= button_to 'Iniciar Conversa', chats_path(destination_id: user.id), method: :post, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out" %>
+    </div>
+  <% end %>
+</div>

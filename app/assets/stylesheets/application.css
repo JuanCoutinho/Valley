@@ -23,13 +23,13 @@
 
 /* Estiliza o polegar da scrollbar (a parte que se move) */
 ::-webkit-scrollbar-thumb {
-  background-color: #00796B; /* Verde água mais escuro */
+  background-color: #011f1b; /* Verde água mais escuro */
   border-radius: 10px; /* Arredonda os cantos */
   border: 2px solid #1F2937; /* Borda ao redor do polegar, combina com o fundo */
 }
 
 /* Estiliza as bordas quando o polegar da scrollbar é focado */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #00796B; /* Verde água ainda mais escuro ao passar o mouse */
+  background-color: #002b26; /* Verde água ainda mais escuro ao passar o mouse */
 }
 
