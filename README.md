@@ -1,24 +1,53 @@
-# README
+# Valley
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<img src="">
 
-Things you may want to cover:
+## Índice
 
-* Ruby version
+- [Visão Geral](#visão-geral)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Instalação](#instalação)
+- [Uso](#uso)
 
-* System dependencies
 
-* Configuration
+## Visão Geral
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## Tecnologias Utilizadas
 
-* Services (job queues, cache servers, search engines, etc.)
+- [Ruby](https://www.ruby-lang.org/en/)
+## Instalação
 
-* Deployment instructions
+Para instalar e rodar este projeto localmente, siga os passos abaixo:
 
-* ...
+1. Clone o repositório:
+    ```sh
+    git clone https://github.com/reddevx/Health_Track
+    cd health__track
+    ```
+
+2. Instale as dependências:
+    ```sh
+    bundle install
+    ```
+
+3. Configure o banco de dados (se aplicável):
+    ```sh
+    rails db:create
+    rails db:migrate
+    ```
+    
+## Uso
+
+Descreva como rodar o projeto e usá-lo. Por exemplo:
+
+1. Inicie o servidor:
+    ```sh
+    rails server
+    ```
+
+2. Acesse o projeto no navegador:
+    ```sh
+    http://localhost:3000
+    ```
