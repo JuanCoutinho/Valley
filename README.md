@@ -1,6 +1,6 @@
 # Valley
 
-<img src="">
+<img src="https://raw.githubusercontent.com/JuanCoutinho/Valley/main/app/assets/images/valley.png">
 
 ## Índice
 
