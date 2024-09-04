@@ -9,8 +9,8 @@ class ChatMessagesController < ApplicationController
         target: 'chat-messages-list',
         partial: 'chat_messages/chat_message',
         locals: {
-          message: chat_message.message,
-          sender_email: current_user.email
+        message: chat_message.message,
+        sender_email: current_user.email
         }
       )
     end
@@ -26,8 +26,7 @@ class ChatMessagesController < ApplicationController
     opt_a_b = '(chats.user_open_chat_id = :user_id AND chats.id = :chat_id)'
     opt_b_a = '(chats.user_destination_chat_id = :user_id AND chats.id = :chat_id)'
     @chat = Chat.where("#{opt_a_b} OR #{opt_b_a}",
-                       user_id: current_user.id,
-                       chat_id: params[:chat_message][:chat_id]
-                       ).first
+    user_id: current_user.id,
+    chat_id: params[:chat_message][:chat_id]).first
   end
 end
