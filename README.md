@@ -23,8 +23,8 @@ Para instalar e rodar este projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/reddevx/Health_Track
-    cd health__track
+    https://github.com/JuanCoutinho/Valley
+    cd Valley
     ```
 
 2. Instale as dependências:
@@ -32,7 +32,7 @@ Para instalar e rodar este projeto localmente, siga os passos abaixo:
     bundle install
     ```
 
-3. Configure o banco de dados (se aplicável):
+3. Configure o banco de dados:
     ```sh
     rails db:create
     rails db:migrate
