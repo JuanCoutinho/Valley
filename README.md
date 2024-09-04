@@ -1,7 +1,6 @@
-
-<center>
-    <img src="https://raw.githubusercontent.com/JuanCoutinho/Valley/main/app/assets/images/valley.png">
-</center>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/JuanCoutinho/Valley/main/app/assets/images/valley.png" alt="Valley Image" width="500" />
+</p>
 
 ## Índice
 
