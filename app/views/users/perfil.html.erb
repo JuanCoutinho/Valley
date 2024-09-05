@@ -8,7 +8,7 @@
   <style>
     /* Adicionando um efeito de sombra mais sutil ao container */
     .profile-card {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     /* Garantindo que a imagem do perfil não fique amassada */
     .profile-image {
@@ -16,29 +16,28 @@
     }
   </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans flex items-center justify-center min-h-screen p-4 text-center">
-<center>
-  <div class="bg-gray-800 p-6 rounded-lg profile-card max-w-md w-full p-5">
+<body class="bg-gray-900 text-gray-100 font-sans flex items-center justify-center min-h-screen p-4">
+<br><br><br>
+  <div class="bg-gray-800 p-6 rounded-xl profile-card max-w-md w-full">
     <!-- Header -->
-    <h1 class="text-2xl font-bold text-teal-400 mb-6 text-center">Perfil do Usuário</h1>
+    <h1 class="text-3xl font-bold text-teal-400 mb-8 text-center">Perfil do Usuário</h1>
 
     <!-- Profile Image and Info -->
     <div class="flex flex-col md:flex-row items-center">
       <div class="relative mb-6 md:mb-0">
         <% if current_user.profile_image.attached? %>
-          <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 profile-image" %>
+          <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-40 h-40 rounded-full border-4 border-teal-500 profile-image" %>
         <% else %>
-          <div class="w-32 h-32 bg-gray-600 rounded-full flex items-center justify-center text-gray-300 text-xl">
+          <div class="w-40 h-40 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 text-2xl font-medium">
             <span>Sem Imagem</span>
           </div>
         <% end %>
       </div>
-      <div class="md:ml-6 text-center md:text-left">
-        <p class="text-lg md:text-xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
-        <p class="text-md md:text-lg">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
+      <div class="md:ml-8 text-center md:text-left">
+        <p class="text-xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
+        <p class="text-lg">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
       </div>
     </div>
   </div>
-<center>
-  </body>
+</body>
 </html>
