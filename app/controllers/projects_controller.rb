@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:toggle_like]
 
   def index
     if params[:query].present?
@@ -64,17 +65,25 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def destroy
-    unless @project.user == current_user
-      redirect_to projects_path, alert: 'Você não tem permissão para excluir este projeto.'
-      return
+  def toggle_like
+    @project = Project.find(params[:id])
+    
+    if @project.liked_by?(current_user)
+      # Remove a curtida existente
+      @project.likes.find_by(user: current_user).destroy
+      flash[:notice] = 'Você descurtiu este projeto.'
+    else
+      # Adiciona uma nova curtida
+      @project.likes.create(user: current_user)
+      flash[:notice] = 'Você curtiu este projeto.'
     end
 
-    @project.destroy
+    # Atualiza o campo likes_count após a modificação
+    @project.update_likes_count
+
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Projeto foi excluído com sucesso.' }
-      format.json { head :no_content }
+      format.html { redirect_to @project }
+      format.js   # Permite manipular a resposta com JavaScript
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_02_112345) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_07_131113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -62,12 +62,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_112345) do
     t.index ["user_open_chat_id"], name: "index_chats_on_user_open_chat_id"
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_likes_on_project_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "ds_project"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.integer "likes_count"
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -92,5 +102,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_112345) do
   add_foreign_key "chat_messages", "users", column: "sender_id"
   add_foreign_key "chats", "users", column: "user_destination_chat_id"
   add_foreign_key "chats", "users", column: "user_open_chat_id"
+  add_foreign_key "likes", "projects"
+  add_foreign_key "likes", "users"
   add_foreign_key "projects", "users"
 end

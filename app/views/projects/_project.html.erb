@@ -20,6 +20,13 @@
         <p class="text-xs text-gray-400">
           Criado por: <%= project.user.email %>
         </p>
+<div class="p-4 flex justify-center">
+  <% if user_signed_in? %>
+    <%= button_to 'Curtir', toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: project.liked_by?(current_user) ? 'btn btn-danger' : 'btn btn-primary' %>
+  <% end %>
+</div>
+<span id="like_count_<%= project.id %>"><%= project.likes_count || 0 %></span> curtidas
+
       </div>
     </div>
   </div>
