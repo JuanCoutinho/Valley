@@ -1,38 +1,78 @@
-<main class="mx-auto">
-<section id="navbar" class="relative bg-cover-full bg-gray-600 bg-blend-multiply" style="background-image: url('https://raw.githubusercontent.com/JuanCoutinho/Valley/main/app/assets/images/background.jpg');">
-    <nav class="bg-transparent border-transparent dark:bg-transparent">
-        <div class="max-w-screen-xl mx-auto p-4">
-            <div class="flex flex-wrap items-center justify-between">
-                <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center hidden md:block', style: 'height: 70px; width: 70px;' %>
-                </a>
-                <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
-                    </svg>
-                </button>
-                <div class="hidden w-full md:flex md:w-auto items-center justify-center" id="navbar-default">
-                    <ul class="font-medium flex flex-col md:flex-row items-center justify-center p-4 md:p-0 mt-4 border border-transparent rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent dark:bg-transparent md:dark:bg-transparent dark:border-transparent">
-                        <%= link_to 'Projetos', projects_path, class: 'text-white bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Profissional</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.7/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Adiciona uma sombra leve à imagem para destaque */
+    .valley-image {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
 
-                        <% unless user_signed_in? %>
-                            <%= link_to 'Logar', new_user_session_path, class: 'text-white bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
-                            <%= link_to 'Cadastrar', new_user_registration_path, class: 'text-white bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
-                        <% end %>
-                    </li>
-                    </ul>
-                </div>
-            </div>
+<main class="relative bg-cover bg-gray-600 bg-blend-multiply" style="background-image: url('https://raw.githubusercontent.com/JuanCoutinho/Valley/main/app/assets/images/background.jpg');">
+  <section id="navbar" class="relative bg-transparent border-none">
+    <nav class="bg-transparent border-none">
+      <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center hidden md:block valley-image', style: 'height: 100px; width: auto;' %>
+        </a>
+        <!-- Mobile menu button -->
+        <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300" aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Abrir menu principal</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"></path>
+          </svg>
+        </button>
+        <!-- Navbar links -->
+        <div class="hidden md:flex md:w-auto items-center" id="navbar-default">
+          <ul class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 p-4 md:p-0">
+            <!-- Link para Projetos (Sempre visível) -->
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to 'Projetos', projects_path, class: 'text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-500 font-medium rounded-lg text-sm px-6 py-3 transition-all duration-300' %>
+              </li>
+            <% end %>
+            <!-- Condições para "Logar" e "Cadastrar" -->
+            <% unless user_signed_in? %>
+              <!-- Link para Logar -->
+              <li>
+                <%= link_to 'Logar', new_user_session_path, class: 'text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-500 font-medium rounded-lg text-sm px-6 py-3 transition-all duration-300' %>
+              </li>
+              <!-- Link para Cadastrar -->
+              <li>
+                <%= link_to 'Cadastrar', new_user_registration_path, class: 'text-white bg-teal-500 hover:bg-teal-700 focus:ring-4 focus:outline-none focus:ring-teal-500 font-medium rounded-lg text-sm px-6 py-3 transition-all duration-300' %>
+              </li>
+            <% end %>
+          </ul>
         </div>
+      </div>
     </nav>
-    
-    <div id="home" class="px-4 mx-auto max-w-screen-xl text-center py-24">
-        <center>
-        <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center hidden md:block text-center', style: 'height: 220px; width: auto;' %>
-        </center>
-        <p class="mb-8 text-lg font-bold text-gray-300 lg:text-3xl">Conectando o amanhã.</p>
-        <%= link_to 'Entrar no Site', new_user_registration_path, class: 'text-white bg-teal-500 hover:bg-teal-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>                     
+  </section>
+
+  <section id="home" class="py-20 p-10">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+        <!-- Imagem da Valley à esquerda -->
+        <div class="md:w-1/2 mb-8 md:mb-0 flex justify-center">
+          <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'valley-image', style: 'height: 300px; width: auto;' %>
+        </div>
+        <!-- Texto e Botões -->
+        <div class="md:w-1/2 text-left space-y-4">
+          <h1 class="text-6xl font-bold text-gray-300">Conectando o amanhã.</h1>
+          <div class="space-y-4">
+<button> Começar
+</button>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 </main>
+</body>
+</html>

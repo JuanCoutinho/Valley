@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :chat_messages, only: :create
 
   get 'choice', to: 'home#choice'
-  get 'terms', to: 'home#terms'
+  get 'termos', to: 'home#termos'
   get 'perfil', to: 'users#perfil', as: 'perfil'
 end

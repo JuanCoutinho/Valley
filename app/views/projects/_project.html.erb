@@ -1,4 +1,4 @@
-<div id="<%= dom_id project %>" class="flex justify-center">
+<div id="<%= dom_id project %>" class="flex justify-center mb-6">
   <div class="relative w-full max-w-sm h-80 rounded-lg overflow-hidden bg-gray-800 text-gray-100 shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
     <!-- Project Image -->
     <% if project.image.attached? %>
@@ -10,23 +10,17 @@
     <% end %>
 
     <div class="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-gray-900 via-transparent to-transparent">
-      <div class="bg-gray-900 bg-opacity-80 p-4  rounded-lg border border-gray-700">
-        <h2 class="text-xl font-semibold text-teal-400 mb-2 leading-tight">
+      <div class="bg-gray-900 bg-opacity-80 p-6 rounded-lg border border-gray-700 shadow-md">
+        <h2 class="text-xl font-semibold text-teal-400 mb-3 leading-tight">
           <%= project.title %>
         </h2>
         <p class="text-sm text-gray-300 mb-4 leading-relaxed">
           <%= project.ds_project %>
         </p>
-        <p class="text-xs text-gray-400">
+        <p class="text-xs text-gray-400 mb-4">
           Criado por: <%= project.user.email %>
         </p>
-<div class="p-4 flex justify-center">
-  <% if user_signed_in? %>
-    <%= button_to 'Curtir', toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: project.liked_by?(current_user) ? 'btn btn-danger' : 'btn btn-primary' %>
-  <% end %>
-</div>
-<span id="like_count_<%= project.id %>"><%= project.likes_count || 0 %></span> curtidas
-
+       
       </div>
     </div>
   </div>

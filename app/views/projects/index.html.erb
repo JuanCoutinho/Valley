@@ -13,16 +13,38 @@
 
 
 <div class="ribbon w-full h-1 rounded-md"></div>
-
 <div id="projects" class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
   <% @projects.each do |project| %>
-    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-transform transform hover:scale-105">
-      <!-- Renderiza o projeto -->
-      <%= render project %>
+    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700 transition-transform transform hover:scale-105 relative group">
+      <!-- Imagem do Projeto -->
+      <% if project.image.attached? %>
+        <%= image_tag project.image, alt: "Imagem do Projeto: #{project.title}", class: "w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300" %>
+      <% else %>
+        <div class="w-full h-56 bg-gray-600 flex items-center justify-center group-hover:bg-gray-500 transition-colors duration-300">
+          <p class="text-gray-300 text-lg font-semibold">Sem imagem</p>
+        </div>
+      <% end %>
 
-      <!-- Botão de Visualização -->
-      <div class="p-4 flex justify-center">
-        <%= link_to "Ver Projeto", project, class: "inline-block bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md" %>
+      <!-- Informações do Projeto -->
+      <div class="p-4 bg-gray-900 bg-opacity-90 group-hover:bg-opacity-100 transition-colors duration-300">
+        <h2 class="text-xl font-bold text-teal-400 mb-2 leading-tight">
+          <%= project.title %>
+        </h2>
+        <p class="text-sm text-gray-300 mb-4">
+          <%= project.ds_project %>
+        </p>
+
+        <!-- Botões de Curtir e Ver Projeto -->
+        <div class="flex gap-4 items-center mt-4">
+          <% if user_signed_in? %>
+            <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-gray-700 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-gray-600" do %>
+              <%= image_tag 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bot%C3%B3n_Me_gusta.svg/640px-Bot%C3%B3n_Me_gusta.svg.png', alt: 'Curtir', class: 'w-6 h-6 mr-2' %>
+              <span id="like_count_<%= project.id %>" class="text-sm"><%= project.likes_count || 0 %></span>
+            <% end %>
+          <% end %>
+
+          <%= link_to 'Ver Projeto', project, class: "inline-block bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-600 transition duration-300 shadow-md" %>
+        </div>
       </div>
     </div>
   <% end %>
