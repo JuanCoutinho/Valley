@@ -1,108 +1,236 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Termos e Condições</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <style>
+        @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            font-family: "Montserrat", sans-serif;
+
+        }
+
+
+        #btnScrollToTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            outline: none;
+            background-color: #38a169;
+            /* Cor de fundo do botão */
+            color: #ffffff;
+            /* Cor do texto do botão */
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        #btnScrollToTop:hover {
+            background-color: #2f855a;
+            /* Cor de fundo do botão ao passar o mouse */
+        }
+    </style>
 </head>
+
 <body class="bg-gray-900 text-white">
     <div class="container mx-auto px-4 py-12">
         <div class="bg-gray-800 rounded-lg shadow-lg p-8">
             <h1 class="text-3xl font-bold mb-6">Termos e Condições</h1>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">1. Aceitação dos Termos</h2>
-                <p class="mb-2">1.1 Ao acessar e utilizar o site Valley, você concorda em cumprir estes Termos e Condições. Se não concordar com estes Termos, não utilize o site.</p>
-                <p class="mb-2">1.2 Podemos atualizar estes Termos a qualquer momento. As atualizações entrarão em vigor assim que publicadas no Aplicativo. Sua continuidade no uso do Aplicativo após essas alterações constitui aceitação dos novos Termos.</p>
+                <p class="mb-2">1.1 Ao acessar e utilizar o site Valley, você concorda em cumprir estes Termos e
+                    Condições. Se não concordar com estes Termos, não utilize o site.</p>
+                <p class="mb-2">1.2 Podemos atualizar estes Termos a qualquer momento. As atualizações entrarão em vigor
+                    assim que publicadas no Aplicativo. Sua continuidade no uso do Aplicativo após essas alterações
+                    constitui aceitação dos novos Termos.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">2. Registro e Conta</h2>
-                <p class="mb-2">2.1 Para postar suas ideias, você deve criar uma conta no Aplicativo, fornecendo informações precisas e completas.</p>
-                <p class="mb-2">2.2 Você é responsável por manter a confidencialidade de sua conta e credenciais. Notifique-nos imediatamente sobre qualquer uso não autorizado da sua conta.</p>
+                <p class="mb-2">2.1 Para postar suas ideias, você deve criar uma conta no Aplicativo, fornecendo
+                    informações precisas e completas.</p>
+                <p class="mb-2">2.2 Você é responsável por manter a confidencialidade de sua conta e credenciais.
+                    Notifique-nos imediatamente sobre qualquer uso não autorizado da sua conta.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">3. Propriedade Intelectual</h2>
-                <p class="mb-2">3.1 Direitos Autorais e Patentes: Você mantém todos os direitos, títulos e interesses sobre suas ideias, invenções e qualquer outra propriedade intelectual que você postou no Aplicativo.</p>
-                <p class="mb-2">3.2 Licença Concedida ao Aplicativo: Ao postar suas ideias, você concede ao Aplicativo uma licença não exclusiva, mundial, isenta de royalties e sublicenciável para utilizar, exibir, promover e divulgar suas ideias exclusivamente no contexto do Aplicativo.</p>
-                <p class="mb-2">3.3 Proteção de Propriedade Intelectual: O Aplicativo adota medidas de segurança para proteger contra o plágio e o uso não autorizado das suas ideias, mas não garantimos proteção completa. É sua responsabilidade registrar formalmente suas invenções e buscar proteção de propriedade intelectual de acordo com as leis aplicáveis.</p>
+                <p class="mb-2">3.1 Direitos Autorais e Patentes: Você mantém todos os direitos, títulos e interesses
+                    sobre suas ideias, invenções e qualquer outra propriedade intelectual que você postou no Aplicativo.
+                </p>
+                <p class="mb-2">3.2 Licença Concedida ao Aplicativo: Ao postar suas ideias, você concede ao Aplicativo
+                    uma licença não exclusiva, mundial, isenta de royalties e sublicenciável para utilizar, exibir,
+                    promover e divulgar suas ideias exclusivamente no contexto do Aplicativo.</p>
+                <p class="mb-2">3.3 Proteção de Propriedade Intelectual: O Aplicativo adota medidas de segurança para
+                    proteger contra o plágio e o uso não autorizado das suas ideias, mas não garantimos proteção
+                    completa. É sua responsabilidade registrar formalmente suas invenções e buscar proteção de
+                    propriedade intelectual de acordo com as leis aplicáveis.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">4. Responsabilidade</h2>
-                <p class="mb-2">4.1 Veracidade das Informações: Você é o único responsável pela precisão e originalidade das informações e ideias postadas. O Aplicativo não verifica a autenticidade ou a viabilidade das ideias publicadas.</p>
-                <p class="mb-2">4.2 Indenização: Você concorda em indenizar e isentar o Aplicativo de qualquer responsabilidade, reclamação ou dano resultante de qualquer violação destes Termos ou de qualquer reivindicação relacionada às suas ideias.</p>
+                <p class="mb-2">4.1 Veracidade das Informações: Você é o único responsável pela precisão e originalidade
+                    das informações e ideias postadas. O Aplicativo não verifica a autenticidade ou a viabilidade das
+                    ideias publicadas.</p>
+                <p class="mb-2">4.2 Indenização: Você concorda em indenizar e isentar o Aplicativo de qualquer
+                    responsabilidade, reclamação ou dano resultante de qualquer violação destes Termos ou de qualquer
+                    reivindicação relacionada às suas ideias.</p>
             </section>
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">5. Exclusão e Remoção</h2>
-                <p class="mb-2">5.1 O Aplicativo reserva-se o direito de remover qualquer conteúdo ou usuário que, a seu critério, viole estes Termos ou seja considerado inadequado, ilegal ou prejudicial.</p>
-                <p class="mb-2">5.2 Em caso de violação significativa, podemos suspender ou encerrar sua conta sem aviso prévio.</p>
+                <p class="mb-2">5.1 O Aplicativo reserva-se o direito de remover qualquer conteúdo ou usuário que, a seu
+                    critério, viole estes Termos ou seja considerado inadequado, ilegal ou prejudicial.</p>
+                <p class="mb-2">5.2 Em caso de violação significativa, podemos suspender ou encerrar sua conta sem aviso
+                    prévio.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">6. Privacidade</h2>
-                <p class="mb-2">6.1 Coleta e Uso de Dados: Coletamos e utilizamos suas informações de acordo com a nossa Política de Privacidade. Ao usar o Aplicativo, você concorda com a coleta e uso de suas informações pessoais conforme descrito na Política de Privacidade.</p>
-                <p class="mb-2">6.2 Segurança: Empregamos medidas razoáveis para proteger suas informações pessoais, mas não podemos garantir segurança absoluta.</p>
+                <p class="mb-2">6.1 Coleta e Uso de Dados: Coletamos e utilizamos suas informações de acordo com a nossa
+                    Política de Privacidade. Ao usar o Aplicativo, você concorda com a coleta e uso de suas informações
+                    pessoais conforme descrito na Política de Privacidade.</p>
+                <p class="mb-2">6.2 Segurança: Empregamos medidas razoáveis para proteger suas informações pessoais, mas
+                    não podemos garantir segurança absoluta.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">7. Modificações</h2>
-                <p class="mb-2">7.1 Reservamo-nos o direito de modificar estes Termos a qualquer momento. As alterações entrarão em vigor assim que publicadas no Aplicativo. É sua responsabilidade revisar periodicamente estes Termos.</p>
+                <p class="mb-2">7.1 Reservamo-nos o direito de modificar estes Termos a qualquer momento. As alterações
+                    entrarão em vigor assim que publicadas no Aplicativo. É sua responsabilidade revisar periodicamente
+                    estes Termos.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">8. Legislação Aplicável e Resolução de Disputas</h2>
                 <p class="mb-2">8.1 Estes Termos serão regidos e interpretados de acordo com as leis do Brasil.</p>
-                <p class="mb-2">8.2 Qualquer disputa relacionada a estes Termos ou ao uso do Aplicativo será resolvida nos tribunais competentes do Brasil, e você concorda com a jurisdição desses tribunais.</p>
+                <p class="mb-2">8.2 Qualquer disputa relacionada a estes Termos ou ao uso do Aplicativo será resolvida
+                    nos tribunais competentes do Brasil, e você concorda com a jurisdição desses tribunais.</p>
             </section>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">9. Contato</h2>
-                <p class="mb-2">9.1 Para qualquer dúvida ou questão sobre estes Termos, entre em contato conosco pelo e-mail <a href="mailto:equipe.atlas.business@gmail.com" class="text-blue-400 underline">equipe.atlas.business@gmail.com</a> ou através de nosso suporte.</p>
+                <p class="mb-2">9.1 Para qualquer dúvida ou questão sobre estes Termos, entre em contato conosco pelo
+                    e-mail <a href="mailto:equipe.atlas.business@gmail.com"
+                        class="text-teal-500 underline">equipe.atlas.business@gmail.com</a> ou através de nosso suporte.
+                </p>
             </section>
 
             <h1 class="text-3xl font-bold mb-6">Política de Privacidade</h1>
-            
+
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">1. Coleta de Dados</h2>
-                <p class="mb-2">1.1 Informações Pessoais: Coletamos informações pessoais que você fornece ao se registrar no Aplicativo, como nome, e-mail, telefone e informações financeiras.</p>
-                <p class="mb-2">1.2 Informações de Uso: Coletamos informações sobre como você usa o Aplicativo, incluindo seu histórico de navegação e interações com outros usuários.</p>
+                <p class="mb-2">1.1 Informações Pessoais: Coletamos informações pessoais que você fornece ao se
+                    registrar no Aplicativo, como nome, e-mail, telefone e informações financeiras.</p>
+                <p class="mb-2">1.2 Informações de Uso: Coletamos informações sobre como você usa o Aplicativo,
+                    incluindo seu histórico de navegação e interações com outros usuários.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">2. Uso dos Dados</h2>
-                <p class="mb-2">2.1 Prestação de Serviços: Usamos suas informações para gerenciar sua conta, conectar investidores e inventores e fornecer o suporte necessário.</p>
-                <p class="mb-2">2.2 Melhoria do Serviço: Analisamos seus dados para melhorar nosso Aplicativo e personalizar sua experiência.</p>
-                <p class="mb-2">2.3 Comunicações: Podemos usar suas informações para enviar atualizações, comunicados e promoções relacionadas ao nosso serviço.</p>
+                <p class="mb-2">2.1 Prestação de Serviços: Usamos suas informações para gerenciar sua conta, conectar
+                    investidores e inventores e fornecer o suporte necessário.</p>
+                <p class="mb-2">2.2 Melhoria do Serviço: Analisamos seus dados para melhorar nosso Aplicativo e
+                    personalizar sua experiência.</p>
+                <p class="mb-2">2.3 Comunicações: Podemos usar suas informações para enviar atualizações, comunicados e
+                    promoções relacionadas ao nosso serviço.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">3. Compartilhamento de Dados</h2>
-                <p class="mb-2">3.1 Com Inventores: Informações relevantes podem ser compartilhadas com inventores para facilitar a conexão e comunicação.</p>
-                <p class="mb-2">3.2 Com Prestadores de Serviços: Podemos compartilhar seus dados com terceiros que prestam serviços em nosso nome, como processadores de pagamento e provedores de suporte técnico.</p>
-                <p class="mb-2">3.3 Conformidade Legal: Podemos divulgar suas informações quando exigido por lei ou para proteger nossos direitos e segurança.</p>
+                <p class="mb-2">3.1 Com Inventores: Informações relevantes podem ser compartilhadas com inventores para
+                    facilitar a conexão e comunicação.</p>
+                <p class="mb-2">3.2 Com Prestadores de Serviços: Podemos compartilhar seus dados com terceiros que
+                    prestam serviços em nosso nome, como processadores de pagamento e provedores de suporte técnico.</p>
+                <p class="mb-2">3.3 Conformidade Legal: Podemos divulgar suas informações quando exigido por lei ou para
+                    proteger nossos direitos e segurança.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">4. Segurança</h2>
-                <p class="mb-2">4.1 Medidas de Segurança: Empregamos medidas razoáveis para proteger suas informações contra acesso não autorizado, alteração ou destruição.</p>
-                <p class="mb-2">4.2 Limitação de Garantias: Apesar dos esforços para proteger seus dados, não podemos garantir segurança absoluta e não seremos responsáveis por qualquer violação de segurança fora de nosso controle.</p>
+                <p class="mb-2">4.1 Medidas de Segurança: Empregamos medidas razoáveis para proteger suas informações
+                    contra acesso não autorizado, alteração ou destruição.</p>
+                <p class="mb-2">4.2 Limitação de Garantias: Apesar dos esforços para proteger seus dados, não podemos
+                    garantir segurança absoluta e não seremos responsáveis por qualquer violação de segurança fora de
+                    nosso controle.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">5. Seus Direitos</h2>
-                <p class="mb-2">5.1 Acesso e Correção: Você tem o direito de acessar e corrigir suas informações pessoais armazenadas em nosso Aplicativo.</p>
-                <p class="mb-2">5.2 Exclusão: Você pode solicitar a exclusão de suas informações pessoais, mas observe que alguns dados podem ser mantidos por motivos legais ou administrativos.</p>
+                <p class="mb-2">5.1 Acesso e Correção: Você tem o direito de acessar e corrigir suas informações
+                    pessoais armazenadas em nosso Aplicativo.</p>
+                <p class="mb-2">5.2 Exclusão: Você pode solicitar a exclusão de suas informações pessoais, mas observe
+                    que alguns dados podem ser mantidos por motivos legais ou administrativos.</p>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold mb-4">6. Alterações na Política de Privacidade</h2>
-                <p class="mb-2">6.1 Revisões: Podemos atualizar esta Política de Privacidade periodicamente. As alterações entrarão em vigor assim que publicadas no Aplicativo.</p>
-                <p class="mb-2">6.2 Notificações: Recomendamos revisar esta Política regularmente para estar ciente de quaisquer mudanças.</p>
+                <p class="mb-2">6.1 Revisões: Podemos atualizar esta Política de Privacidade periodicamente. As
+                    alterações entrarão em vigor assim que publicadas no Aplicativo.</p>
+                <p class="mb-2">6.2 Notificações: Recomendamos revisar esta Política regularmente para estar ciente de
+                    quaisquer mudanças.</p>
+            </section>
+
+
+
+            <section>
+                <button
+                    class="text-white bg-teal-500 hover:bg-teal-500 focus:ring-4 focus:ring-teal-500 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-teal-500 dark:hover:bg-teal-500 focus:outline-none dark:focus:ring-teal-500 shadow-lg">
+                    Eu aceito</button>
             </section>
         </div>
     </div>
+
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <button id="scrollTopButton"
+        class="fixed bottom-4 right-4 p-5 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        <i class="bi bi-chevron-double-up"></i>
+    </button>
+
+    <script>
+        // JavaScript para subir ao topo quando o botão é clicado
+        const scrollTopButton = document.getElementById('scrollTopButton');
+
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+
+    
+  <script>
+    window.addEventListener("scroll", function () {
+      var btnWhatsApp = document.querySelector('.btn-whatsapp');
+      btnWhatsApp.classList.toggle("hidden", window.scrollY > 1000);
+    });
+  </script>
+    </section>
 </body>
+
 </html>
