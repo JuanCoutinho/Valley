@@ -78,12 +78,11 @@ class ProjectsController < ApplicationController
       flash[:notice] = 'Você curtiu este projeto.'
     end
 
-    # Atualiza o campo likes_count após a modificação
     @project.update_likes_count
 
     respond_to do |format|
       format.html { redirect_to @project }
-      format.js   # Permite manipular a resposta com JavaScript
+      format.js 
     end
   end
 

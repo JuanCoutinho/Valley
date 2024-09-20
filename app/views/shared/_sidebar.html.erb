@@ -1,24 +1,60 @@
+
 <aside id="sidebar-multi-level-sidebar" class="hidden md:block fixed top-0 left-0 z-100 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-800 dark:bg-gray-900" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
             <li>
                 <center>
                     <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center hidden md:block', style: 'height: 90px; width: 90px;' %>
+            <li>
+                <%= link_to perfil_path, class: 'flex items-center bg-teal-500 p-2 text-gray-100 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 group' do %>
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="ms-3 ">Notificações</span>
+                    <span class="bg-teal-500 h-1"></span>
+                <% end %>
+            </li>
                 </center>
             </li>          
             <li>
                 <%= link_to chats_path, class: 'flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 group' do %>
                     <i class="bi bi-chat-left-text-fill"></i>
                     <span class="ms-3">Chat</span>
+                    
                 <% end %>
             </li>
             <li>
-                <%= link_to projects_path, class: 'flex items-center w-full p-2 text-gray-100 transition duration-75 rounded-lg group hover:bg-gray-700 dark:hover:bg-gray-600' do %>
-                    <i class="bi bi-box-fill"></i>
-                    <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Projetos</span>
+               <li>
+    <button type="button" class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+       <i class="bi bi-pc-display"></i>
+        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Projetos</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+    </button>
+    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+        <li>
+            <%= link_to 'Ver Projetos', projects_path, class: 'flex items-center w-full p-2 text-white transition duration-75 rounded-lg group hover:bg-gray-700 dark:hover:bg-gray-600' %>
+        </li>
+        <li>
+            <%= link_to 'Ver Projetos', projects_path, class: 'flex items-center w-full p-2 text-white transition duration-75 rounded-lg group hover:bg-gray-700 dark:hover:bg-gray-600' %>
+    
+        </li>
+        <li>
+            <%= link_to 'Ver Projetos', projects_path, class: 'flex items-center w-full p-2 text-white transition duration-75 rounded-lg group hover:bg-gray-700 dark:hover:bg-gray-600' %>
+    
+        </li>
+    </ul>
+</li>
+
+
+            
+            </li>
+             <li>
+                <%= link_to perfil_path, class: 'flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 group' do %>
+                     <i class="bi bi-phone-fill"></i>
+                    <span class="ms-3">Postagens</span>
                 <% end %>
             </li>
-            <li>
+             <li>
                 <%= link_to perfil_path, class: 'flex items-center p-2 text-gray-100 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 group' do %>
                     <i class="bi bi-person-circle"></i>
                     <span class="ms-3">Meu Perfil</span>
