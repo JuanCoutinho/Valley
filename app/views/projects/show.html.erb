@@ -1,28 +1,62 @@
 <!-- app/views/projects/show.html.erb -->
-<div class="max-w-4xl mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-2xl">
+<div class="h-screen mx-auto p-4 sm:p-8 bg-gray-900 text-white rounded-lg shadow-2xl">
   <!-- Project Details -->
-  <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-    <h1 class="text-4xl font-bold mb-4"><%= @project.title %></h1>
-    
-    <% if @project.image.attached? %>
-      <div class="relative mb-4">
-        <%= image_tag @project.image, class: "w-full h-64 object-cover rounded-lg shadow-lg" %>
-        <!-- Overlay with title -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 rounded-lg"></div>
-      </div>
-    <% end %>
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6 flex flex-col md:flex-row md:items-start">
+    <div class="flex-1 mb-4 md:mb-0 md:mr-4">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 transition-transform duration-300 hover:scale-105"><%= @project.title %></h1>
+      
+      <% if @project.image.attached? %>
+        <div class="relative mb-4 transition-transform duration-300 hover:scale-105">
+          <%= image_tag @project.image, class: "w-full h-64 md:h-80 object-cover rounded-lg shadow-lg" %>
+          <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 rounded-lg"></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="flex-1 space-y-4">
+      <p>
+        <strong class="text-lg">Objetivo:</strong>
+        <span class="block text-gray-300 transition-colors duration-300 hover:text-gray-400"><%= @project.ds_project %></span>
+      </p>
+
+      <p>
+        <strong class="text-lg">Funcionalidades:</strong>
+        <span class="block text-gray-300 transition-colors duration-300 hover:text-gray-400"><%= @project.features %></span>
+      </p>
+
+      <p>
+        <strong class="text-lg">Guia de Uso:</strong>
+        <span class="block text-gray-300 transition-colors duration-300 hover:text-gray-400"><%= @project.guide %></span>
+      </p>
+
+      <p>
+        <strong class="text-lg">Link do GitHub:</strong>
+        <span class="block">
+          <%= link_to @project.github_link, @project.github_link, target: "_blank", class: "text-blue-400 hover:underline transition duration-200 transform hover:scale-105" %>
+        </span>
+      </p>
+
+      <p>
+        <strong class="text-lg">Imagens:</strong>
+        <span class="block text-gray-300"><%= @project.images %></span>
+      </p>
+
+      <p>
+        <strong class="text-lg">Investimento Necessário:</strong>
+        <span class="block">R$ <%= number_to_currency(@project.investment) %></span>
+      </p>
+    </div>
   </div>
 
   <!-- Actions -->
-  <div class="flex justify-between items-center space-x-4">
-    <%= link_to "Voltar a Projetos", projects_path, class: "bg-gray-600 text-white rounded-md py-2 px-4 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200" %>
+  <div class="flex flex-col md:flex-row justify-between items-center space-x-0 md:space-x-4 mt-6">
+    <%= link_to "Voltar a Projetos", projects_path, class: "bg-gray-600 text-white rounded-md py-2 px-4 mb-2 md:mb-0 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 transform hover:scale-105" %>
     
     <% if @project.user == current_user %>
       <div class="flex space-x-4">
-        <%= link_to 'Editar', edit_project_path(@project), class: "bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" %>
-        <%= button_to 'Apagar', @project, method: :delete, data: { confirm: 'Tem certeza que deseja apagar este projeto?' }, class: "bg-red-600 text-white rounded-md py-2 px-4 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200" %>
-
-        </div>
+        <%= link_to 'Editar', edit_project_path(@project), class: "bg-blue-600 text-white rounded-md py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 transform hover:scale-105" %>
+        <%= button_to 'Apagar', @project, method: :delete, data: { confirm: 'Tem certeza que deseja apagar este projeto?' }, class: "bg-red-600 text-white rounded-md py-2 px-4 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-200 transform hover:scale-105" %>
+      </div>
     <% end %>
   </div>
 </div>

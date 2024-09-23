@@ -1,32 +1,40 @@
+
+<div class="login-container mx-auto bg-gray-900 p-6 rounded-lg shadow-xl flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-6">
+  <!-- Imagem ao lado, aparece em telas maiores -->
+  <div class="hidden sm:block w-full sm:w-1/2">
+    <%= image_tag 'login', class: 'rounded-lg shadow-lg object-cover' %>
+  </div>
+
+  <!-- Formulário -->
+  <div class="w-full sm:w-1/2 bg-gray-800 p-6 rounded-lg shadow-lg">
 <h2 class="text-3xl font-bold text-white mb-4 text-center">Login</h2>
 
-<div class="login-container mx-auto bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg">
-  <%= form_for(resource, as: resource_name, url: new_user_session_path, html: { class: "space-y-4" }) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: new_user_session_path, html: { class: "space-y-6" }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-    </div>
+      <div class="field">
+        <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+      </div>
 
-    <div class="field">
-      <%= f.label :Senha, class: "block text-sm font-medium text-gray-300" %>
-      <% if @minimum_password_length %>
-        <em class="text-gray-400 text-sm">(<%= @minimum_password_length %> caracteres mínimos)</em>
+      <div class="field">
+        <%= f.label :Senha, class: "block text-sm font-medium text-gray-300" %>
+        <% if @minimum_password_length %>
+          <em class="text-gray-400 text-sm">(<%= @minimum_password_length %> caracteres mínimos)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field flex items-center">
+          <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 bg-gray-800 border-gray-600 rounded focus:ring-indigo-500" %>
+          <%= f.label :Lembrar_de_mim, class: "ml-2 block text-sm text-gray-300" %>
+        </div>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-    </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="field flex items-center">
-        <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 bg-gray-800 border-gray-600 rounded focus:ring-indigo-500" %>
-        <%= f.label :Lembrar_de_mim, class: "ml-2 block text-sm text-gray-300" %>
+      <div class="actions">
+        <%= f.submit "Entrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
       </div>
     <% end %>
-
-    <div class="actions">
-      <%= f.submit "Entrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
-    </div>
-  <% end %>
-
+  </div>
 </div>

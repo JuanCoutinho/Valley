@@ -72,6 +72,8 @@
       <% end %>
 
       <% if user_signed_in? %>
+        <%= link_to "Chats", chats_path, class: "text-white px-3 py-1 rounded-md text-base font-medium transition duration-300 ease-in-out" %>
+        <%= link_to "Postagens", posts_path, class: "text-white px-3 py-1 rounded-md text-base font-medium transition duration-300 ease-in-out" %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-base font-medium transition duration-300 ease-in-out" %>
       <% end %>
     </div>

@@ -1,43 +1,60 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil do Usuário</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    /* Adicionando um efeito de sombra mais sutil ao container */
-    .profile-card {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    /* Garantindo que a imagem do perfil não fique amassada */
-    .profile-image {
-      object-fit: cover; /* Garante que a imagem preencha o container mantendo a proporção */
-    }
-  </style>
-</head>
-<body class="bg-gray-900 text-gray-100 font-sans flex items-center justify-center min-h-screen p-4">
-<br><br><br>
-  <div class="bg-gray-800 p-6 rounded-xl profile-card max-w-md w-full">
-    <!-- Header -->
-    <h1 class="text-3xl font-bold text-teal-400 mb-8 text-center">Perfil do Usuário</h1>
+<body class="bg-gray-900 text-gray-200 flex items-center justify-center h-screen p-4">
+  <div class="bg-gray-800 p-6 rounded-lg shadow-2xl w-full max-w-6xl flex flex-col md:flex-row">
 
-    <!-- Profile Image and Info -->
-    <div class="flex flex-col md:flex-row items-center">
-      <div class="relative mb-6 md:mb-0">
-        <% if current_user.profile_image.attached? %>
-          <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-40 h-40 rounded-full border-4 border-teal-500 profile-image" %>
-        <% else %>
-          <div class="w-40 h-40 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 text-2xl font-medium">
-            <span>Sem Imagem</span>
-          </div>
-        <% end %>
+    <!-- Seção do Perfil do Usuário -->
+    <div class="flex-1 mb-6 md:mb-0 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-gray-600 pb-6 md:pb-0 pr-0 md:pr-6">
+      <h1 class="text-4xl font-bold text-teal-400 mb-6 text-center">Perfil do Usuário</h1>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="relative mb-6 md:mb-0">
+          <% if current_user.profile_image.attached? %>
+            <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 shadow-lg transition-transform transform hover:scale-105" %>
+          <% else %>
+            <div class="w-32 h-32 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-2xl font-medium shadow-lg">
+              <span>Sem Imagem</span>
+            </div>
+          <% end %>
+        </div>
+        <div class="md:ml-8 text-center md:text-left">
+          <p class="text-2xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
+          <p class="text-lg text-gray-300">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
+        </div>
       </div>
-      <div class="md:ml-8 text-center md:text-left">
-        <p class="text-xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
-        <p class="text-lg">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
+      <div class="mt-8 text-center w-full">
+        <button class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300">
+          Editar Perfil
+        </button>
       </div>
+    </div>
+
+    <!-- Painel de Controle -->
+    <div class="flex-1 p-6 rounded-lg shadow-lg bg-gray-700">
+      <h2 class="text-2xl font-bold text-teal-400 mb-4">Painel de Controle</h2>
+      <ul class="space-y-2">
+        <li>
+          <a href="#" class="block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0zm6 2a6 6 0 11-6-6 6 6 0 016 6z" /></svg>
+            Configurações
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0zm6 2a6 6 0 11-6-6 6 6 0 016 6z" /></svg>
+            Gerenciar Usuários
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0zm6 2a6 6 0 11-6-6 6 6 0 016 6z" /></svg>
+            Relatórios
+          </a>
+        </li>
+        <li>
+          <a href="#" class="block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 10a2 2 0 114 0 2 2 0 01-4 0zm6 2a6 6 0 11-6-6 6 6 0 016 6z" /></svg>
+            Logout
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </body>
-</html>

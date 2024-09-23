@@ -5,14 +5,15 @@
     <%= render "users/shared/error_messages", resource: resource %>
 
     <div class="field">
-  <%= f.label :nome, class: "block text-sm font-medium text-gray-300" %>
-  <%= f.text_field :name, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-</div>
+      <%= f.label :nome, class: "block text-sm font-medium text-gray-300" %>
+      <%= f.text_field :name, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+    </div>
 
-<div class="field">
-  <%= f.label :Qual_sua_finalidade?, class: "block text-sm font-medium text-gray-300" %>
-  <%= f.select :user_type, options_for_select([['Ser Investidor nos projetos', 'investor'], ['Quero publicar meus projetos', 'technology_creator']]), {}, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-</div>
+    <div class="field">
+      <%= f.label :Qual_sua_finalidade?, class: "block text-sm font-medium text-gray-300" %>
+      <%= f.select :user_type, options_for_select([['Ser Investidor nos projetos', 'investor'], ['Quero publicar meus projetos', 'technology_creator']]), {}, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+    </div>
+
     <div class="field">
       <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
@@ -32,15 +33,14 @@
     </div>
 
     <div class="field">
-    <%= f.label :profile_image, "Imagem de Perfil" %><br />
-    <%= f.file_field :profile_image %>
-  </div>
+      <%= f.label :profile_image, "Imagem de Perfil", class: "block text-sm font-medium text-gray-300" %>
+      <%= f.file_field :profile_image, class: "mt-1 block w-full px-3 py-2  text-white rounded-md" %>
+    </div>
 
     <div class="actions">
       <%= f.submit "Cadastrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
     </div>
   <% end %>
-
 </div>
 
 <script>
@@ -69,25 +69,5 @@
     .signup {
       padding: 2rem;
     }
-  }
-
-  .file-input {
-    display: none;
-  }
-
-  .file-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #4a5568; /* Gray-600 border */
-    background-color: #2d3748; /* Gray-700 background */
-    transition: background-color 0.3s, border-color 0.3s;
-    font-size: 0.875rem; /* Text size similar to input fields */
-    cursor: pointer;
-  }
-
-  .file-label:hover {
-    background-color: #4a5568; /* Darker gray on hover */
-    border-color: #2b6cb0; /* Indigo-600 border on hover */
   }
 </style>

@@ -1,4 +1,4 @@
-<%= form_with(model: project, class: "max-w-lg mx-auto p-8 bg-gray-900 rounded-lg shadow-lg  space-y-6") do |form| %>
+<%= form_with(model: project, class: "max-w-lg mx-auto p-8 bg-gray-900 rounded-lg shadow-lg space-y-6") do |form| %>
   <% if project.errors.any? %>
     <div class="bg-red-600 text-white p-4 rounded-lg shadow-md">
       <h2 class="text-lg font-semibold mb-2">
@@ -14,7 +14,7 @@
 
   <div class="flex flex-col">
     <%= form.label :title, "Nome do Projeto", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.text_field :title, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full transition duration-300 ease-in-out" %>
+    <%= form.text_field :title, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out" %>
   </div>
 
   <div class="flex flex-col">
@@ -24,10 +24,22 @@
 
   <div class="flex flex-col">
     <%= form.label :image, "Imagem", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.file_field :image, class: " bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
+    <%= form.file_field :image, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
   </div>
-  
+
+  <% [[:features, "Características"], [:guide, "Guia"], [:github_link, "Link do GitHub"], [:investment, "Investimento"]].each do |field, label| %>
+    <div class="flex flex-col">
+      <%= form.label field, label, class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_area field, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out" %>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col">
+    <%= form.label :images, "Imagens", class: "text-lg font-semibold text-gray-300 mb-2" %>
+    <%= form.file_field :image, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
+  </div>
+
   <div>
-    <%= form.submit "Submit", class: "bg-blue-600 text-white rounded-md py-3 px-6 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out w-full" %>
+    <%= form.submit "Enviar", class: "bg-blue-600 text-white rounded-md py-3 px-6 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out w-full" %>
   </div>
 <% end %>
