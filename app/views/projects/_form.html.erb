@@ -1,4 +1,4 @@
-<%= form_with(model: project, class: "max-w-lg mx-auto p-8 bg-gray-900 rounded-lg shadow-lg space-y-6") do |form| %>
+<%= form_with(model: project, class: "max-w-4xl mx-auto p-8 bg-gray-900 rounded-lg shadow-lg space-y-6") do |form| %>
   <% if project.errors.any? %>
     <div class="bg-red-600 text-white p-4 rounded-lg shadow-md">
       <h2 class="text-lg font-semibold mb-2">
@@ -12,31 +12,46 @@
     </div>
   <% end %>
 
-  <div class="flex flex-col">
-    <%= form.label :title, "Nome do Projeto", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.text_field :title, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out" %>
-  </div>
-
-  <div class="flex flex-col">
-    <%= form.label :ds_project, "Descrição", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.text_area :ds_project, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
-  </div>
-
-  <div class="flex flex-col">
-    <%= form.label :image, "Imagem", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.file_field :image, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
-  </div>
-
-  <% [[:features, "Características"], [:guide, "Guia"], [:github_link, "Link do GitHub"], [:investment, "Investimento"]].each do |field, label| %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div class="flex flex-col">
-      <%= form.label field, label, class: "text-lg font-semibold text-gray-300 mb-2" %>
-      <%= form.text_area field, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out" %>
+      <%= form.label :title, "Nome do Projeto", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_field :title, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out w-full" %>
     </div>
-  <% end %>
 
-  <div class="flex flex-col">
-    <%= form.label :images, "Imagens", class: "text-lg font-semibold text-gray-300 mb-2" %>
-    <%= form.file_field :image, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
+    <div class="flex flex-col">
+      <%= form.label :github_link, "Link do GitHub", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_field :github_link, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out w-full" %>
+    </div>
+
+    <div class="flex flex-col md:col-span-2">
+      <%= form.label :ds_project, "Descrição", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_area :ds_project, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :investment, "Investimento Necessário", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.number_field :investment, step: "0.01", class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out w-full" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :image, "Imagem Principal", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.file_field :image, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= form.label :images, "Imagens Adicionais", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.file_field :images, class: "bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none transition duration-300 ease-in-out w-full" %>
+    </div>
+
+    <div class="flex flex-col md:col-span-2">
+      <%= form.label :features, "Características", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_area :features, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
+    </div>
+
+    <div class="flex flex-col md:col-span-2">
+      <%= form.label :guide, "Guia de Uso", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.text_area :guide, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
+    </div>
   </div>
 
   <div>

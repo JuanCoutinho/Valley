@@ -47,13 +47,15 @@
       <% if user_signed_in? %>
         <%= render 'shared/notice_alert' %>
       <% end %>
+    
        <%= render  "shared/vlibras" %>  
       <%= yield %>
+      <%= render  "shared/footer" %>
     </div>
   </div>
   
   <% else %>
-    <div class="flex-1 flex flex-col p-3 lg:p-8">
+    <div class="flex-1 flex flex-col lg:p-8">
       <%= render 'shared/nav' %>
 
       <% if user_signed_in? %>
@@ -61,6 +63,7 @@
       <% end %>
 
       <%= yield %>
+      <%= render  "shared/footer" %>
     </div>
   <% end %>
   
