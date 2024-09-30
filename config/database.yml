@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: valley_development
+  database: valley
 
 test:
   <<: *default

@@ -5,7 +5,7 @@
 <div class="mb-6">
   <form action="<%= projects_path %>" method="get" class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-4 bg-gray-800 rounded-lg shadow-lg">
     <input type="text" name="query" placeholder="Pesquisar projetos..." class="text-gray-200 w-full lg:w-3/4 p-3 border border-gray-700 rounded-lg bg-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300" />
-    <button type="submit" class="bg-teal-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-teal-600 transition duration-300">Pesquisar</button>
+    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-teal-600 transition duration-300">Pesquisar</button>
   </form>
 </div>
 
@@ -34,13 +34,13 @@
 
         <div class="flex justify-between items-center mt-4">
           <% if user_signed_in? %>
-            <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-teal-500 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-teal-600" do %>
+            <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-blue-500 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-teal-600" do %>
               <%= image_tag 'https://cdn-icons-png.flaticon.com/512/5182/5182878.png', alt: 'Curtir', class: 'w-6 h-6 mr-2' %>
               <span id="like_count_<%= project.id %>" class="text-sm"><%= project.likes_count || 0 %></span>
             <% end %>
           <% end %>
           
-          <%= link_to 'Ver Projeto', project, class: "bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-600 transition duration-300 shadow-md transform hover:scale-105" %>
+          <%= link_to 'Ver Projeto', project, class: "bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-600 transition duration-300 shadow-md transform hover:scale-105" %>
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@
     100% { background-position: 100% 0%; }
   }
   .ribbon {
-    background: linear-gradient(to right, #00bfae, #1de9b6, #4db6ac, #80cbc4, #00bcd4, #26c6da, #4dd0e1);
+    background: linear-gradient(to right, #0d47a1, #1565c0, #1976d2, #1e88e5, #42a5f5, #64b5f6);
     background-size: 300% 100%;
     animation: run 5s linear infinite;
   }

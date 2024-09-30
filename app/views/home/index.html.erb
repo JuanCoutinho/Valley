@@ -20,7 +20,7 @@
             </nav>
             <div class="hidden md:flex items-center space-x-4">
                 <%= link_to 'Faça login', '#', class: 'text-gray-300 hover:text-red-500' %>
-                <a href="#" class="bg-teal-500 text-white px-4 py-2 rounded-md">Cadastre-se</a>
+                <a href="#" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition">Cadastre-se</a>
             </div>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-gray-300 focus:outline-none">
@@ -35,7 +35,7 @@
                 <%= link_to 'Eu quero investir', new_user_registration_path, class: 'text-gray-300 font-semibold hover:text-blue-500' %>
                 <%= link_to 'Eu quero publicar projetos', new_user_registration_path, class: 'text-gray-300 font-semibold hover:text-blue-500' %>
                 <%= link_to 'Faça login', '#', class: 'text-gray-300 hover:text-blue-500' %>
-                <a href="#" class="bg-teal-500 text-white px-4 py-2 rounded-md">Cadastre-se</a>
+                <a href="#" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition">Cadastre-se</a>
             </div>
         </nav>
     </header>
@@ -58,15 +58,15 @@
             </div>
 
             <h1 class="text-4xl md:text-5xl font-bold">Projetos qualificados</h1>
-            <h2 class="text-4xl md:text-5xl font-bold">prontos para receber seu investimento <span class="text-cyan-500">hoje mesmo</span></h2>
-            <p class="text-gray-400 text-lg md:text-xl">Conecte-se com milhares de projetos. Pague de forma segura e invista em projetos de tecnologia e muito mais.</p>
+            <h2 class="text-4xl md:text-5xl font-bold">Prontos para receber seu investimento <span class="text-cyan-500">hoje mesmo</span></h2>
+            <p class="text-gray-400 text-lg md:text-xl">Conecte-se com milhares de projetos. Pague de forma segura e invista em tecnologia e muito mais.</p>
             <div class="flex items-center justify-center md:justify-start space-x-4 mt-8">
-                <%= link_to 'Eu quero investir', new_user_registration_path, class: 'bg-teal-500 text-white px-8 py-4 rounded-md text-lg md:text-xl' %>
-                <%= link_to 'Você quer publicar projetos?', new_user_registration_path, class: 'text-blue-500 text-lg md:text-xl' %>
+                <%= link_to 'Eu quero investir', new_user_registration_path, class: 'bg-teal-500 text-white px-8 py-4 rounded-md text-lg md:text-xl hover:bg-teal-600 transition' %>
+                <%= link_to 'Você quer publicar projetos?', new_user_registration_path, class: 'text-blue-500 text-lg md:text-xl hover:underline' %>
             </div>
         </div>
         <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-            <%= image_tag 'investidor.png', class: 'w-full h-auto max-h-[500px] object-cover' %>
+            <%= image_tag 'investidor.png', class: 'w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg' %>
         </div>        
     </section>
 
@@ -85,68 +85,67 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <!DOCTYPE html>
-  <html lang="pt-BR">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Bem-vindo</title>
-      <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
-      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-      <style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
         /* Animações para dar mais vida ao site */
         @keyframes slideDown {
-          0% {
-            opacity: 0;
-            transform: translateY(-50px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         @keyframes fadeIn {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 1;
-          }
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         /* Estilos para animação e suavidade de transição */
         .fade-in {
-          animation: fadeIn 1s ease-in-out;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .slide-down {
-          animation: slideDown 0.8s ease-out;
+            animation: slideDown 0.8s ease-out;
         }
-      </style>
-  </head>
-  <body class="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
-      <div class="flex items-center justify-center h-screen">
-      
-          <div class="text-center space-y-6 p-8 bg-gray-800 bg-opacity-50 rounded-lg shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl slide-down">
-         <center>
-                    <% if current_user.profile_image.attached? %>
-                      <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 shadow-lg transition-transform transform hover:scale-105" %>
-                    <% else %>
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div class="flex items-center justify-center h-screen">
+        <div class="text-center space-y-6 p-8 bg-gray-800 bg-opacity-70 rounded-lg shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl slide-down">
+            <center>
+                <% if current_user.profile_image.attached? %>
+                    <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 shadow-lg transition-transform transform hover:scale-105" %>
+                <% else %>
                     <div class="w-32 h-32 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-2xl font-medium shadow-lg">
-                    <span>Sem Imagem</span>
+                        <span>Sem Imagem</span>
                     </div>
-                    <% end %>
-                    </center>
-              <h1 class="text-4xl md:text-5xl font-extrabold mb-4 fade-in">Seja Bem-vindo novamente, <%= current_user.name %></h1>
-              <p class="text-gray-300 text-lg md:text-xl mb-8 fade-in">Você está logado com sucesso. Explore nossos projetos e comece a investir ou publicar.</p>
-              <div class="flex justify-center space-x-4 fade-in">
-                  <%= link_to 'Ir para a Dashboard', projects_path, class: 'bg-teal-500 text-white px-6 py-3 rounded-full text-lg transition-transform transform hover:-translate-y-1 hover:bg-teal-600 shadow-lg hover:shadow-teal-500/50' %>
-              </div>
-          </div>
-      </div>
+                <% end %>
+            </center>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 fade-in">Seja bem-vindo novamente, <%= current_user.name %></h1>
+            <p class="text-gray-300 text-lg md:text-xl mb-8 fade-in">Você está logado com sucesso. Explore nossos projetos e comece a investir ou publicar.</p>
+            <div class="flex justify-center space-x-4 fade-in">
+                <%= link_to 'Ir para o Site', projects_path, class: 'bg-teal-500 text-white px-6 py-3 rounded-full text-lg transition-transform transform hover:-translate-y-1 hover:bg-teal-600 shadow-lg hover:shadow-teal-500/50' %>
+            </div>
+        </div>
+    </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-  </body>
-  </html>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</body>
+</html>
 <% end %>

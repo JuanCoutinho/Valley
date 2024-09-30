@@ -14,7 +14,11 @@
           <span class="text-sm text-gray-400"><%= user.user_type %></span>
         </div>
       </div>
-      <%= button_to '>', chats_path(destination_id: user.id), method: :post, class: "bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out" %>
+     <%= button_to url: chats_path, method: :post, params: { destination_id: user.id }, class: "bg-teal-500 text-white flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-teal-600 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-400" do %>
+  <i class="bi bi-chat text-lg"></i>
+  <span class="font-semibold p-1">Chat</span>
+<% end %>
+
     </div>
   <% end %>
 </div>
