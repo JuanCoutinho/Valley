@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :chats, only: %i[index create show]
   resources :chat_messages, only: :create
 
+  get 'usuarios', to: 'chats#usuarios'
   get 'creator', to: 'home#creator'
   get 'termos', to: 'home#termos'
   get 'perfil', to: 'users#perfil', as: 'perfil'

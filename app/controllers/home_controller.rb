@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  layout 'home' 
-  
+  layout 'home'
+
   def index; end
   def termos; end
 end

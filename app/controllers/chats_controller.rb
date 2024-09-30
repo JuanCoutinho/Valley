@@ -3,6 +3,10 @@ class ChatsController < ApplicationController
     @users = User.all
   end
 
+  def usuarios
+    @users = User.all # ou outra lógica para obter os usuários
+  end
+
   def create
     seek_chat
     return redirect_to(chat_path(id: @chat.id, destination_id: fetch_destination.id)) if @chat.present?
@@ -22,6 +26,8 @@ class ChatsController < ApplicationController
     @destination = fetch_destination
     @chat_messages = @chat.chat_messages.order(created_at: :desc)
   end
+
+  def usuarios; end
 
   private
 

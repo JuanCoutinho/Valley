@@ -1,8 +1,8 @@
 <h1 class="text-3xl font-bold mb-4">Postagens</h1>
 <div class="mt-4">
-  <%= link_to "Nova Postagem", new_post_path, class: "bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition" %>
+  <%= link_to "Nova Postagem", new_post_path, class: "bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition" %>
 </div>
-<br>
+<br><br>
 <div id="posts" class="space-y-4">
   <% @posts.order(created_at: :desc).each do |post| %> <!-- Ordenação por data de criação -->
     <div class="rounded-lg shadow-lg p-4 ">
