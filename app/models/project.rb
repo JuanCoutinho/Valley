@@ -1,9 +1,9 @@
-class Project < ApplicationRecord
-    has_one_attached :image
-    has_one_attached :images
-    belongs_to :user
-    has_many :likes, dependent: :destroy
-    has_many :liked_users, through: :likes, source: :user
+class Project < ApplicationRecord # rubocop:disable Style/Documentation
+  has_one_attached :image
+  has_one_attached :images
+  belongs_to :user
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
 
   def liked_by?(user)
     liked_users.include?(user)

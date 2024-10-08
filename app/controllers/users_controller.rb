@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def after_sign_in_path_for(resource)
-    projects_path # ou a rota desejada
+  def after_sign_in_path_for
+    projects_path
   end
 
   protected

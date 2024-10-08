@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-  resources :posts
-
   root "home#index"
 
   resources :projects do
     post 'toggle_like', on: :member
   end
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-
   resources :chats, only: %i[index create show]
   resources :chat_messages, only: :create
+  resources :posts
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'usuarios', to: 'chats#usuarios'
   get 'creator', to: 'home#creator'

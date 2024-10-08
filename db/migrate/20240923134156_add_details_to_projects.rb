@@ -1,4 +1,4 @@
-class AddDetailsToProjects < ActiveRecord::Migration[7.1]
+class AddDetailsToProjects < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
   def change
     add_column :projects, :aim, :text
     add_column :projects, :features, :text

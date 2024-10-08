@@ -1,14 +1,14 @@
-class ProjectsController < ApplicationController
+class ProjectsController < ApplicationController # rubocop:disable Style/Documentation
   before_action :set_project, only: %i[show edit update destroy]
   before_action :authenticate_user!
   before_action :authenticate_user!, only: [:toggle_like]
 
   def index
-    if params[:query].present?
-      @projects = Project.where('title LIKE ?', "%#{params[:query]}%")
-    else
-      @projects = Project.all
-    end
+    @projects = if params[:query].present?
+                  Project.where('title LIKE ?', "%#{params[:query]}%")
+                else
+                  Project.all
+                end
   end
 
   def show; end
@@ -18,9 +18,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    unless @project.user == current_user
-      redirect_to projects_path, alert: 'Você não tem permissão para editar este projeto.'
-    end
+    return if @project.user == current_user
+
+    redirect_to projects_path, alert: 'Você não tem permissão para editar este projeto.'
   end
 
   def create
@@ -38,9 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    unless @project.user == current_user
-      redirect_to projects_path, alert: 'Você não tem permissão para atualizar este projeto.'
-    end
+    redirect_to projects_path, alert: 'Você não tem permissão para atualizar este projeto.' unless @project.user == current_user
 
     respond_to do |format|
       if @project.update(project_params)
@@ -65,9 +63,10 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def toggle_like
+
+  def toggle_like # rubocop:disable Metrics/AbcSize
     @project = Project.find(params[:id])
-    
+
     if @project.liked_by?(current_user)
       # Remove a curtida existente
       @project.likes.find_by(user: current_user).destroy
@@ -82,16 +81,17 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to @project }
-      format.js 
+      format.js
     end
   end
 
   private
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    def project_params
-      params.require(:project).permit(:title, :description, :status, :features, :image, :guide, :github_link, :images, :investment) 
-    end    
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:title, :description, :status, :features, :image, :guide, :github_link, :images, :investment)
+  end
 end

@@ -27,8 +27,6 @@ class ChatsController < ApplicationController
     @chat_messages = @chat.chat_messages.order(created_at: :desc)
   end
 
-  def usuarios; end
-
   private
 
   def fetch_destination

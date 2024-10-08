@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "posts/index", type: :view do
   before(:each) do
     assign(:posts, [
-      Post.create!(
+      Post.create!( # rubocop:disable Layout/FirstArrayElementIndentation
         title: "Title",
         body: "MyText"
       ),
@@ -11,7 +11,7 @@ RSpec.describe "posts/index", type: :view do
         title: "Title",
         body: "MyText"
       )
-    ])
+    ]) # rubocop:disable Layout/FirstArrayElementIndentation
   end
 
   it "renders a list of posts" do

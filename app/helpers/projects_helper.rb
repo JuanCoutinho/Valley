@@ -1,2 +1,1 @@
-module ProjectsHelper
-end
+module ProjectsHelper end # rubocop:disable Style/Documentation

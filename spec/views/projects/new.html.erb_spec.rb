@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "projects/new", type: :view do
   before(:each) do
     assign(:project, Project.new(
-      title: "MyString",
+      title: "MyString", # rubocop:disable Layout/FirstArgumentIndentation
       ds_project: "MyText"
     ))
   end
@@ -12,7 +12,6 @@ RSpec.describe "projects/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", projects_path, "post" do
-
       assert_select "input[name=?]", "project[title]"
 
       assert_select "textarea[name=?]", "project[ds_project]"

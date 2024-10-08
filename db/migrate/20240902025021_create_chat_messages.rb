@@ -1,4 +1,4 @@
-class CreateChatMessages < ActiveRecord::Migration[7.1]
+class CreateChatMessages < ActiveRecord::Migration[7.1] # rubocop:disable Style/Documentation
   def change
     create_table :chat_messages, id: :uuid do |t|
       t.references :chat, null: false, foreign_key: true, type: :uuid

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "posts/show", type: :view do
   before(:each) do
     assign(:post, Post.create!(
-      title: "Title",
+      title: "Title", # rubocop:disable Layout/FirstArgumentIndentation
       body: "MyText"
     ))
   end
