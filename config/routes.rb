@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   resources :chats, only: %i[index create show]
   resources :chat_messages, only: :create
   resources :posts
-
+  resources :notifications, only: [:index]
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'usuarios', to: 'chats#usuarios'
   get 'creator', to: 'home#creator'
+  get 'notification', to: 'chats#notification'
   get 'termos', to: 'home#termos'
   get 'perfil', to: 'users#perfil', as: 'perfil'
 end

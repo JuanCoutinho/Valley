@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController # rubocop:disable Style/Documentation
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def perfil
