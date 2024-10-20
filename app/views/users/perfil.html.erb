@@ -1,54 +1,51 @@
- <div class="bg-gray-800 p-6 rounded-lg shadow-2xl w-full max-w-6xl flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6">
-<br><br><br>
-    <!-- Seção do Perfil do Usuário -->
-    <div class="flex-1 mb-6 md:mb-0 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-gray-600 pb-6 md:pb-0 pr-0 md:pr-6">
-      <h1 class="text-4xl font-bold text-teal-400 mb-6 text-center">Perfil do Usuário</h1>
-      <div class="relative mb-4">
-        <% if current_user.profile_image.attached? %>
-          <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-32 h-32 rounded-full border-4 border-teal-500 shadow-lg transition-transform transform hover:scale-105" %>
-        <% else %>
-          <div class="w-32 h-32 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-2xl font-medium shadow-lg">
-            <span>Sem Imagem</span>
-          </div>
-        <% end %>
-      </div>
-      <div class="text-center mb-6">
-        <p class="text-2xl mb-2">Bem-vindo, <span class="font-semibold text-teal-200"><%= @user.email %></span>!</p>
-        <p class="text-lg text-gray-300">Tipo de usuário: <span class="font-semibold text-teal-200"><%= @user.user_type.humanize %></span></p>
-      </div>
-      <div class="mt-4 text-center w-full">
-        <%= link_to "Editar Perfil", edit_user_registration_path, class: 'bg-blue-600 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
-      </div>
+<div class="bg-gray-800 p-10 rounded-xl shadow-lg w-full max-w-7xl flex flex-col md:flex-row items-start justify-between space-y-10 md:space-y-0 md:space-x-10 mx-auto">
+  <!-- Seção do Perfil do Usuário -->
+  <div class="flex-1 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-600 pb-8 md:pb-0 md:pr-10 text-center">
+    <h1 class="text-3xl font-bold tracking-wide mb-6 text-teal-400">Perfil do Usuário</h1>
+    <div class="relative mb-5">
+      <% if current_user.profile_image.attached? %>
+        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-36 h-36 rounded-full border-4 border-teal-400 shadow-md transition-transform transform hover:scale-110" %>
+      <% else %>
+        <div class="w-36 h-36 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-2xl font-medium shadow-md">
+          <span>Sem Imagem</span>
+        </div>
+      <% end %>
     </div>
-
-    <!-- Painel de Controle -->
-    <div class="flex-1 p-6 rounded-lg shadow-lg bg-gray-700 flex flex-col items-center">
-      <h2 class="text-2xl font-bold text-teal-400 mb-4 text-center">Painel de Controle</h2>
-      <ul class="space-y-2 w-full text-center">
-        <li>
-          <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center justify-center", to: perfil_path do %>
-            <i class="bi bi-gear-fill mr-2"></i>
-            Configurações
-          <% end %>
-        </li>
-        <li>
-          <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center justify-center", to: perfil_path do %>
-            <i class="bi bi-person-fill mr-2"></i>
-            Gerenciar Usuários
-          <% end %>
-        </li>
-        <li>
-          <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center justify-center", to: perfil_path do %>
-            <i class="bi bi-file-earmark-bar-graph-fill mr-2"></i>
-            Relatórios
-          <% end %>
-        </li>
-        <li>
-          <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded transition duration-300 flex items-center justify-center", to: perfil_path, method: :delete, data: { turbo_method: :delete } do %>
-            <i class="bi bi-box-arrow-right mr-2"></i>
-            Logout
-          <% end %>
-        </li>
-      </ul>
+    <div class="mb-5">
+      <p class="text-2xl font-semibold text-white">Bem-vindo, <span class="font-bold text-teal-200"><%= @user.email %></span>!</p>
+      <p class="text-lg text-gray-300 mt-1">Tipo de usuário: <span class="font-medium text-teal-200"><%= @user.user_type.humanize %></span></p>
     </div>
+    <%= link_to "Editar Perfil", edit_user_registration_path, class: 'mt-6 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-400' %>
   </div>
+
+  <!-- Painel de Controle -->
+  <div class="flex-1 p-10 rounded-xl shadow-md bg-gray-700 text-center">
+    <h2 class="text-3xl font-semibold text-teal-400 mb-8">Painel de Controle</h2>
+    <ul class="space-y-5">
+      <li>
+        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
+          <i class="bi bi-gear-fill mr-2"></i>
+          Configurações
+        <% end %>
+      </li>
+      <li>
+        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
+          <i class="bi bi-person-fill mr-2"></i>
+          Gerenciar Usuários
+        <% end %>
+      </li>
+      <li>
+        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
+          <i class="bi bi-file-earmark-bar-graph-fill mr-2"></i>
+          Relatórios
+        <% end %>
+      </li>
+      <li>
+        <%= link_to class: "block bg-red-500 hover:bg-red-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path, method: :delete, data: { turbo_method: :delete } do %>
+          <i class="bi bi-box-arrow-right mr-2"></i>
+          Logout
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>

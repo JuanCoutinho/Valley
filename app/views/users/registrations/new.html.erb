@@ -1,53 +1,127 @@
-<div class="flex flex-col md:flex-row mx-auto bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg">
-  <!-- Coluna da Imagem -->
+<div class="flex justify-center items-center my-6 md:my-12 md:space-x-8">
+<!-- Navbar -->
+<nav id="navbar" class="fixed top-0 left-0 w-full bg-transparent transition-colors duration-300 ease-in-out z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="#">
+          <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-10 w-10' %>
+        </a>
+      </div>
+      
+      <!-- Menu (desktop) -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a href="#home" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+          <a href="#about" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Sobre</a>
+          <a href="#projects" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projetos</a>
+          <a href="#contact" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contato</a>
+        </div>
+      </div>
 
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none focus:text-white">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
-  <!-- Coluna do Formulário -->
-  <div class="signup md:w-1/2">
-<h2 class="text-3xl font-bold text-white mb-4 text-center mt-6">Cadastrar-se</h2>
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      <a href="#home" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+      <a href="#about" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Sobre</a>
+      <a href="#projects" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projetos</a>
+      <a href="#contact" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Script para alternar o menu mobile -->
+<script>
+  document.getElementById('mobile-menu-button').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+
+  // Navbar muda de cor ao rolar a página
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-gray-900');
+      navbar.classList.remove('bg-transparent');
+    } else {
+      navbar.classList.add('bg-transparent');
+      navbar.classList.remove('bg-gray-900');
+    }
+  });
+</script>
+<br><br><br>
+  <!-- Logo -->
+  <div class="hidden md:block"> <!-- Esconde no mobile -->
+    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-48 w-48 rounded-full shadow-lg' %>
+  </div>
+
+  <!-- Formulário de Cadastro -->
+  <div class="signup w-full md:w-1/2 p-8 bg-gray-900 bg-opacity-95 rounded-lg shadow-2xl border border-gray-700">
+    <h2 class="text-3xl font-bold text-white mb-6 text-center">Cadastrar-se</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'space-y-6' }) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
 
+      <!-- Nome -->
       <div class="field">
-        <%= f.label :nome, class: "block text-sm font-medium text-gray-300" %>
-        <%= f.text_field :name, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+        <%= f.label :nome, class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.text_field :name, class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
       </div>
 
+      <!-- Tipo de Usuário -->
       <div class="field">
-        <%= f.label :Qual_sua_finalidade?, class: "block text-sm font-medium text-gray-300" %>
-        <%= f.select :user_type, options_for_select([['Ser Investidor nos projetos', 'investor'], ['Quero publicar meus projetos', 'technology_creator']]), {}, class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+        <%= f.label :Qual_sua_finalidade?, class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.select :user_type, options_for_select([['Ser Investidor nos projetos', 'investor'], ['Quero publicar meus projetos', 'technology_creator']]), {}, class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
       </div>
 
+      <!-- Email -->
       <div class="field">
-        <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+        <%= f.label :email, class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
       </div>
 
+      <!-- Senha -->
       <div class="field">
-        <%= f.label :Senha, class: "block text-sm font-medium text-gray-300" %>
+        <%= f.label :Senha, class: 'block text-sm font-medium text-gray-200' %>
         <% if @minimum_password_length %>
-          <em class="text-gray-400 text-sm">(<%= @minimum_password_length %> characters minimum)</em>
+          <em class="text-xs text-gray-400">(<%= @minimum_password_length %> caracteres no mínimo)</em>
         <% end %>
-        <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
       </div>
 
+      <!-- Confirmação de Senha -->
       <div class="field">
-        <%= f.label :Confirmação_de_senha, class: "block text-sm font-medium text-gray-300" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+        <%= f.label :Confirmação_de_senha, class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
       </div>
 
+      <!-- Imagem de Perfil -->
       <div class="field">
-        <%= f.label :profile_image, "Imagem de Perfil", class: "block text-sm font-medium text-gray-300" %>
-        <%= f.file_field :profile_image, class: "mt-1 block w-full px-3 py-2 text-white rounded-md" %>
+        <%= f.label :profile_image, "Imagem de Perfil", class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.file_field :profile_image, class: 'mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 transition duration-200' %>
       </div>
 
+      <!-- Botão de Cadastro -->
       <div class="actions">
-        <%= f.submit "Cadastrar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-base" %>
+        <%= f.submit "Cadastrar", class: 'w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 ease-in-out' %>
       </div>
     <% end %>
   </div>
 </div>
 
+<!-- Script para Interação com o Campo de Upload -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var fileInput = document.getElementById('profile_image');
@@ -62,17 +136,3 @@
     });
   });
 </script>
-
-<style>
-  .signup {
-    max-width: 500px;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  @media (max-width: 640px) {
-    .signup {
-      padding: 2rem;
-    }
-  }
-</style>

@@ -2,45 +2,68 @@
 
 <div class="flex flex-col h-screen bg-gray-900 text-white p-6">
  
- <div class="mb-4 flex items-center space-x-4">
-  <% if @destination.profile_image.attached? %>
-    <%= image_tag rails_blob_url(@destination.profile_image, only_path: true), class: "w-12 h-12 rounded-full" %>
-  <% else %>
-    <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-gray-300 text-xl font-medium">
-      <span>Sem Imagem</span>
-    </div>
-  <% end %>
-  <p class="text-xl font-semibold text-gray-200">
-    <%= @destination.name %>
-  </p>
-</div>
-
-
+  <div class="mb-4 flex items-center space-x-4">
+    <% if @destination.profile_image.attached? %>
+      <%= image_tag rails_blob_url(@destination.profile_image, only_path: true), class: "w-12 h-12 rounded-full" %>
+    <% else %>
+      <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-gray-300 text-xl font-medium">
+        <span>Sem Imagem</span>
+      </div>
+    <% end %>
+    <p class="text-xl font-semibold text-gray-200">
+      <%= @destination.name %>
+    </p>
+  </div>
 
   <hr class="border-gray-700 mb-4">
 
- 
-
   <!-- Chat Messages List -->
-  <div id="chat-messages-list" class="flex flex-col space-y-4 overflow-y-auto h-96 border border-gray-700 p-4 rounded-lg bg-gray-800">
+  <div id="chat-messages-list" class="flex flex-col-reverse space-y-4 overflow-y-auto h-96 border border-gray-700 p-4 rounded-lg bg-gray-800">
     <% @chat_messages.each do |message| %>
-      <div class="flex items-start space-x-3">
-      
-    
-          <span class="font-semibold text-teal-300"><%= message.sender.email.split('@').first %>:</span>
-          <p class="text-gray-300 mt-1"><%= message.message %></p>
- 
+      <div class="flex items-start space-x-3 mb-2">
+        <span class="font-semibold text-white !important"><%= message.sender.email.split('@').first %>:</span> <!-- Usa !important para garantir a cor -->
+        <p class="text-gray-300 mt-1 ml-2"><%= message.message %></p>
       </div>
     <% end %>
   </div>
   <br>
+
   <!-- Message Form -->
-  <%= form_with model: ChatMessage.new, local: true do |f| %>
+  <%= form_with model: ChatMessage.new, local: true, html: { id: "message-form" } do |f| %>
     <div class="flex mb-4">
       <%= f.hidden_field :chat_id, value: @chat.id %>
-      <%= f.text_field :message, placeholder: "Digite sua mensagem...", class: "flex-1 p-3 border border-gray-700 rounded-lg bg-gray-800 text-white" %>
-      <%= f.submit '➮', class: "ml-2 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-lg" %>
+      <%= f.text_field :message, placeholder: "Digite sua mensagem...", id: "message-input", class: "flex-1 p-3 border border-gray-700 rounded-lg bg-gray-800 text-white" %>
+      <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg">
+        <i class="fa-solid fa-comment"></i> <!-- Ícone do Font Awesome -->
+      </button>
     </div>
-    <% end %>
-  </div>
-    
+  <% end %>
+</div>
+
+<script>
+  // Limpa o campo de mensagem após o envio
+  document.addEventListener("turbo:submit-end", function(event) {
+    if (event.target.id === "message-form") {
+      document.getElementById("message-input").value = ""; // Limpa o campo de mensagem
+    }
+  });
+
+  // Função para rolar o contêiner de mensagens para baixo
+  function scrollToBottom() {
+    const chatMessagesList = document.getElementById("chat-messages-list");
+    chatMessagesList.scrollTop = chatMessagesList.scrollHeight; // Rola para a parte inferior
+  }
+
+  // Rola para baixo após o carregamento da página e após novas mensagens
+  document.addEventListener("turbo:load", scrollToBottom);
+  document.addEventListener("turbo:before-stream-render", scrollToBottom);
+
+  // Rola para baixo após uma nova mensagem ser enviada
+  document.addEventListener("turbo:submit-end", function(event) {
+    if (event.target.id === "message-form") {
+      scrollToBottom();
+    }
+  });
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

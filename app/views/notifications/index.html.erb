@@ -1,0 +1,13 @@
+<h1 class="text-4xl font-bold mb-4">Notificações</h1>
+
+<% @notifications.each do |notification| %>
+  <div class="bg-gray-800 rounded-lg p-4 mb-2 transition-all duration-300 <%= 'opacity-50' if notification.read %>">
+    <p class="text-gray-300"><%= notification.message %></p>
+    <p class="text-sm text-gray-500"><%= time_ago_in_words(notification.created_at) %> atrás</p>
+    <%= button_to 'Marcar como lida', mark_as_read_notification_path(notification), method: :post, class: 'mt-2 text-blue-500' unless notification.read %>
+  </div>
+<% end %>
+
+<% if @notifications.empty? %>
+  <p class="text-gray-400">Nenhuma notificação disponível.</p>
+<% end %>

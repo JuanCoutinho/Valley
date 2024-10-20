@@ -1,58 +1,71 @@
-<aside id="sidebar-multi-level-sidebar" class="hidden md:block fixed top-0 left-0 z-50 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 bg-gray-800 dark:bg-gray-900" aria-label="Sidebar">
-    <div class="h-full px-4 py-6 overflow-y-auto">
-        <div class="text-center mb-4">
-        <center>
-            <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center', style: 'height: 90px; width: 90px;' %>
-        </center>
+<aside id="sidebar-multi-level-sidebar" class="hidden md:block fixed top-0 left-0 z-50 w-64 h-screen bg-gray-800 transition-all duration-500 transform -translate-x-full sm:translate-x-0 shadow-lg">
+    <div class="h-full flex flex-col justify-between">
+        <div class="px-4 py-6 overflow-y-auto">
+            <div class="text-center mb-6">
+                <center>
+                    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'self-center', style: 'height: 90px; width: 90px;' %>
+                </center>
+            </div>
+            <ul class="space-y-3 font-medium">
+                <li>
+                    <%= link_to posts_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-bell-fill text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Notificações</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to chats_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-chat-left-text-fill text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Chat</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to projects_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-pc-display text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Projetos</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to new_project_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-plus-circle-fill text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Novo Projeto</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to posts_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-phone-fill text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Postagens</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to perfil_path, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-blue-700 dark:hover:bg-blue-800 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-person-circle text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Meu Perfil</span>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'flex items-center p-3 text-gray-200 rounded-lg bg-gray-800 hover:bg-red-600 dark:hover:bg-red-700 group transition-colors duration-300 shadow-md hover:shadow-lg' do %>
+                        <i class="bi bi-box-arrow-left text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+                        <span class="ml-3 text-gray-300 group-hover:text-white transition-colors duration-300">Sair</span>
+                    <% end %>
+                </li>
+            </ul>
         </div>
-        <ul class="space-y-2 font-medium">
-           <ul class="space-y-2">
-    <li>
-        <%= link_to posts_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-bell-fill text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Notificações</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to chats_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-chat-left-text-fill text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Chat</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to projects_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-pc-display text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Projetos</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to new_project_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-plus-circle-fill text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Novo Projeto</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to posts_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-phone-fill text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Postagens</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to perfil_path, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-person-circle text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300">Meu Perfil</span>
-        <% end %>
-    </li>
-    <li>
-        <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: 'flex items-center p-3 text-gray-100 rounded-lg bg-gray-800 hover:bg-teal-600 dark:hover:bg-gray-700 group transition-colors duration-300' do %>
-            <i class="bi bi-box-arrow-left text-gray-300 group-hover:text-white transition-colors duration-300"></i>
-            <span class="ml-3 hover:text-white text-gray-300  ">Sair</span>
-        <% end %>
-    </li>
-</ul>
 
-            </li>
-        </ul>
+        <!-- Footer fixo da sidebar -->
+        <div class="px-4 py-4 bg-gray-900 p-4">
+            <div class="flex justify-between">
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300 p-2">
+                    <i class="bi bi-github text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300 p-2">
+                    <i class="bi bi-linkedin text-2xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-300 p-2">
+                    <i class="bi bi-twitter text-2xl"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </aside>
 
