@@ -14,7 +14,7 @@ module Users
 
   def configure_permitted_parameters # rubocop:disable Layout/IndentationWidth
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :user_type, :profile_image])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_type, :profile_image])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :user_type, :profile_image, :description])
   end
   end
 end

@@ -1,51 +1,73 @@
-<div class="bg-gray-800 p-10 rounded-xl shadow-lg w-full max-w-7xl flex flex-col md:flex-row items-start justify-between space-y-10 md:space-y-0 md:space-x-10 mx-auto">
+<div class="flex flex-col md:flex-row max-w-6xl mx-auto p-6 space-y-6 md:space-y-0 md:space-x-6">
   <!-- Seção do Perfil do Usuário -->
-  <div class="flex-1 flex flex-col items-center border-b md:border-b-0 md:border-r border-gray-600 pb-8 md:pb-0 md:pr-10 text-center">
-    <h1 class="text-3xl font-bold tracking-wide mb-6 text-teal-400">Perfil do Usuário</h1>
-    <div class="relative mb-5">
+  <div class="w-full md:w-1/4 bg-gray-800 text-white rounded-lg p-6 shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">Perfil do Usuário</h1>
+    <div class="mb-4 flex justify-center">
       <% if current_user.profile_image.attached? %>
-        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-36 h-36 rounded-full border-4 border-teal-400 shadow-md transition-transform transform hover:scale-110" %>
+        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: 'rounded-full border-4 border w-32 h-32' %>
       <% else %>
-        <div class="w-36 h-36 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-2xl font-medium shadow-md">
-          <span>Sem Imagem</span>
+        <div class="flex items-center justify-center w-32 h-32 bg-gray-700 rounded-full">
+          <span class="text-gray-400">Sem Imagem</span>
         </div>
       <% end %>
     </div>
-    <div class="mb-5">
-      <p class="text-2xl font-semibold text-white">Bem-vindo, <span class="font-bold text-teal-200"><%= @user.email %></span>!</p>
-      <p class="text-lg text-gray-300 mt-1">Tipo de usuário: <span class="font-medium text-teal-200"><%= @user.user_type.humanize %></span></p>
+    <div>
+      <p class="text-lg font-semibold">Bem-vindo, <%= @user.email %>!</p>
+      <p class="text-gray-300">Tipo de usuário: <%= @user.user_type.humanize %></p>
     </div>
-    <%= link_to "Editar Perfil", edit_user_registration_path, class: 'mt-6 bg-teal-500 hover:bg-teal-600 text-white font-medium py-2 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-teal-400' %>
+    <%= link_to "Editar Perfil", edit_user_registration_path, class: "mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg transition duration-300 hover:bg-blue-700" %>
+    
+    <hr class="my-4 border-gray-600">
+    
+    <h2 class="text-lg font-semibold mb-2">Projetos</h2>
+    <% if @projects.present? %>
+      <% @projects.each do |project| %>
+        <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-700 transition-all duration-300 hover:shadow-xl relative group mb-4">
+          <h2 class="text-lg md:text-xl text-center font-bold mb-2 leading-tight truncate">
+            <%= project.title %>
+          </h2>
+          <% if project.image.attached? %>
+            <%= image_tag project.image, alt: "Imagem do Projeto: #{project.title}", class: "w-full h-48 object-cover group-hover:opacity-90 transition-opacity duration-300" %>
+          <% else %>
+            <div class="w-full h-48 bg-gray-600 flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+              <p class="text-gray-300 text-lg font-semibold">Sem imagem</p>
+            </div>
+          <% end %>
+
+          <p class="text-sm p-1 text-gray-400">Publicado por: <%= project.user.name if project.user %></p>
+          
+          <div class="p-4 bg-gray-900 bg-opacity-90 group-hover:bg-opacity-100 transition-colors duration-300">
+            <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+              <%= project.ds_project %>
+            </p>
+
+            <div class="flex justify-between items-center mt-4">
+              <% if user_signed_in? %>
+                <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-blue-600 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-blue-700" do %>
+                  <%= image_tag 'https://cdn-icons-png.flaticon.com/512/5182/5182878.png', alt: 'Curtir', class: 'w-6 h-6 mr-2' %>
+                  <span id="like_count_<%= project.id %>" class="text-sm"><%= project.likes_count || 0 %></span>
+                <% end %>
+              <% end %>
+              
+              <%= link_to 'Ver Projeto', project, class: "bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-gray-400">Nenhum projeto encontrado.</p>
+    <% end %>
   </div>
 
-  <!-- Painel de Controle -->
-  <div class="flex-1 p-10 rounded-xl shadow-md bg-gray-700 text-center">
-    <h2 class="text-3xl font-semibold text-teal-400 mb-8">Painel de Controle</h2>
-    <ul class="space-y-5">
-      <li>
-        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
-          <i class="bi bi-gear-fill mr-2"></i>
-          Configurações
-        <% end %>
-      </li>
-      <li>
-        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
-          <i class="bi bi-person-fill mr-2"></i>
-          Gerenciar Usuários
-        <% end %>
-      </li>
-      <li>
-        <%= link_to class: "block bg-teal-500 hover:bg-teal-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path do %>
-          <i class="bi bi-file-earmark-bar-graph-fill mr-2"></i>
-          Relatórios
-        <% end %>
-      </li>
-      <li>
-        <%= link_to class: "block bg-red-500 hover:bg-red-600 text-white py-3 px-5 rounded-lg shadow-md transition-transform transform hover:scale-105 flex items-center justify-center", to: perfil_path, method: :delete, data: { turbo_method: :delete } do %>
-          <i class="bi bi-box-arrow-right mr-2"></i>
-          Logout
-        <% end %>
-      </li>
-    </ul>
+  <!-- Descrição -->
+<div class="w-full md:w-3/4 bg-gray-900 text-white rounded-lg p-6 shadow-lg border border-gray-300">
+    <h2 class="text-lg font-semibold mb-4">Descrição</h2>
+    <div>
+      <% if @user.description.present? %>
+        <%= simple_format(Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@user.description)) %>
+      <% else %>
+        <p class="text-gray-400">Descrição não disponível.</p>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_17_150254) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_20_224252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_150254) do
     t.datetime "updated_at", null: false
     t.index ["user_destination_chat_id"], name: "index_chats_on_user_destination_chat_id"
     t.index ["user_open_chat_id"], name: "index_chats_on_user_open_chat_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_comments_on_project_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -114,6 +124,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_150254) do
     t.string "profile_image"
     t.string "name"
     t.string "user_type"
+    t.text "description"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -124,6 +135,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_150254) do
   add_foreign_key "chat_messages", "users", column: "sender_id"
   add_foreign_key "chats", "users", column: "user_destination_chat_id"
   add_foreign_key "chats", "users", column: "user_open_chat_id"
+  add_foreign_key "comments", "projects"
+  add_foreign_key "comments", "users"
   add_foreign_key "likes", "projects"
   add_foreign_key "likes", "users"
   add_foreign_key "notifications", "users"

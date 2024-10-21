@@ -1,4 +1,3 @@
-# app/controllers/notifications_controller.rb
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
 

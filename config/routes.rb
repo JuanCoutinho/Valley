@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :projects do
+    resources :comments, only: [:create, :destroy]
+  end
+
+  
   resources :chats, only: %i[index create show]
   resources :chat_messages, only: :create
   resources :posts
@@ -20,7 +25,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'usuarios', to: 'chats#usuarios'
-  get 'creator', to: 'home#creator'
+  get 'creator', to: 'home#creator' 
   get 'notification', to: 'chats#notification'
   get 'termos', to: 'home#termos'
   get 'perfil', to: 'users#perfil', as: 'perfil'

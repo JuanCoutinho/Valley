@@ -1,36 +1,44 @@
-<nav class="bg-gray-800 p-4">
+<nav class="bg-gray-900 p-4 shadow-lg fixed w-full z-50">
     <div class="container mx-auto flex justify-between items-center">
-        <a href="#" class="text-white text-lg font-bold">Logo</a>
-        <div class="hidden md:flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white">Home</a>
-            <a href="#" class="text-gray-300 hover:text-white">Sobre</a>
-            <a href="#" class="text-gray-300 hover:text-white">Serviços</a>
-            <a href="#" class="text-gray-300 hover:text-white">Contato</a>
+        <!-- Logo centralizado em telas maiores e ajustado para mobile -->
+        <div class="flex justify-center items-center">
+            <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-12 w-12 md:h-16 md:w-16 self-center rounded-full shadow-lg border-4 border-gray-700 hover:shadow-2xl transition-all duration-300' %>
         </div>
+
+        <!-- Links desktop visíveis apenas em telas md+ -->
+        <div class="hidden md:flex space-x-6">
+            <%= link_to 'Cadastrar', new_registration_path(resource_name), class: 'text-gray-300 hover:text-white font-semibold transition-all duration-300 hover:underline' %>
+            <%= link_to 'Entrar', new_session_path(resource_name), class: 'text-gray-300 hover:text-white font-semibold transition-all duration-300 hover:underline' %>
+        </div>
+
+        <!-- Botão do menu mobile visível apenas em telas menores que md -->
         <div class="md:hidden">
             <button id="menu-button" class="text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-8 h-8 hover:text-green-400 transition duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
     </div>
-    <div id="mobile-menu" class="md:hidden">
-        <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">Home</a>
-        <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">Sobre</a>
-        <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">Serviços</a>
-        <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white">Contato</a>
+
+    <!-- Menu mobile oculto por padrão, visível em telas menores que md -->
+    <div id="mobile-menu" class="md:hidden hidden flex flex-col bg-gray-800 mt-2 py-4 px-2 rounded-lg shadow-lg">
+        <%= link_to 'Cadastrar', new_registration_path(resource_name), class: 'block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-300' %>
+        <%= link_to 'Entrar', new_session_path(resource_name), class: 'block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-300' %>
     </div>
 </nav>
 
-<br><br><br><br><br><br>
-<div class="flex justify-center items-center my-6 md:my-12 md:space-x-8">
-  
-  <!-- Logo -->
-  <div class="hidden md:block"> <!-- Esconde no mobile -->
-    <%= image_tag 'valley.png', alt: 'Valley Logo', class: 'h-48 w-48 rounded-full shadow-lg' %>
-  </div>
+<script>
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+<br><br><br><br><br><br>
+<div class="flex justify-center items-center my-6 md:my-12 mt-12">
   <!-- Formulário de Login -->
   <div class="login w-full md:w-1/2 p-8 bg-gray-900 bg-opacity-95 rounded-lg shadow-2xl border border-gray-700">
     <h2 class="text-3xl font-bold text-white mb-6 text-center">Entrar</h2>
@@ -41,35 +49,24 @@
       <!-- Email -->
       <div class="field">
         <%= f.label :email, class: 'block text-sm font-medium text-gray-200' %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200' %>
       </div>
 
       <!-- Senha -->
       <div class="field">
-        <%= f.label :Senha, class: 'block text-sm font-medium text-gray-200' %>
-        <%= f.password_field :password, autocomplete: "current-password", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm transition duration-200' %>
+        <%= f.label :password, class: 'block text-sm font-medium text-gray-200' %>
+        <%= f.password_field :password, autocomplete: "current-password", class: 'mt-1 block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200' %>
       </div>
 
       <!-- Botão de Login -->
       <div class="actions">
-        <%= f.submit "Entrar", class: 'w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 ease-in-out' %>
+        <%= f.submit "Entrar", class: 'w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 ease-in-out' %>
       </div>
     <% end %>
 
     <!-- Link para recuperar senha -->
     <div class="mt-4 text-center">
-      <a href="<%= new_password_path(resource_name) %>" class="text-sm text-gray-400 hover:text-white transition duration-200">Esqueceu sua senha?</a>
+      <%= link_to 'Esqueceu sua senha?', new_password_path(resource_name), class: 'text-sm text-gray-400 hover:text-white transition duration-200' %>
     </div>
   </div>
 </div>
-
-
-
-<script>
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>

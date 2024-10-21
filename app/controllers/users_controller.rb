@@ -3,12 +3,14 @@ class UsersController < ApplicationController # rubocop:disable Style/Documentat
 
   def perfil
     @user = current_user
+    @projects = @user.projects # Isso irá buscar apenas os projetos do usuário atual
   end
 
   def after_sign_in_path_for
     projects_path
   end
 
+  
   protected
 
   def configure_permitted_parameters

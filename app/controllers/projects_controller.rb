@@ -23,6 +23,12 @@ class ProjectsController < ApplicationController # rubocop:disable Style/Documen
     redirect_to projects_path, alert: 'Você não tem permissão para editar este projeto.'
   end
 
+  def show
+    @project = Project.find(params[:id])
+    @comments = @project.comments.includes(:user) # Carregue os comentários com o usuário
+    @comment = Comment.new # Inicialize um novo comentário
+  end
+  
   def create
     @project = current_user.projects.build(project_params)
 
