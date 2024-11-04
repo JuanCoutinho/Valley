@@ -3,4 +3,5 @@ class HomeController < ApplicationController
 
   def index; end
   def termos; end
+  def faq; end
 end

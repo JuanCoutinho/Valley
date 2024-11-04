@@ -122,9 +122,11 @@
         }
     </style>
 </head>
+
 <body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white w-full">
+<br><br><br>
     <div class="flex items-center justify-center min-h-screen p-6">
-        <div class="bg-gray-800 bg-opacity-80 rounded-lg shadow-2xl p-8 max-w-lg w-full slide-down">
+        <div class="bg-gray-800 p-4 bg-opacity-80 rounded-lg shadow-2xl p-8 w-full slide-down">
             <center>
                 <% if current_user.profile_image.attached? %>
                     <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: "w-40 h-40 rounded-full border-4 border-teal-500 shadow-lg transform hover:scale-110 transition duration-300" %>
@@ -135,8 +137,8 @@
                 <% end %>
             </center>
             
-            <h1 class="text-5xl font-extrabold text-teal-400 mt-6 mb-4 fade-in">Bem-vindo, <%= current_user.name %>!</h1>
-            <p class="text-gray-300 text-lg mb-8 fade-in">Você está logado com sucesso. Explore os projetos disponíveis e comece a investir com segurança.</p>
+            <h1 class="text-5xl font-extrabold text-teal-400 mt-6 mb-4 fade- text-center">Seja Bem-vindo, <%= current_user.name %>!</h1>
+            <p class="text-gray-300 text-lg mb-8 text-center fade-in">Você está logado com sucesso. Explore os projetos disponíveis e comece a investir com segurança.</p>
             
             <div class="flex justify-center space-x-4">
                 <%= link_to 'Explorar Projetos', projects_path, class: 'bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md transform hover:scale-105 transition duration-300' %>

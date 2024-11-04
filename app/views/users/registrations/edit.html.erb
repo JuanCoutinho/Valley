@@ -1,61 +1,98 @@
-<h2 class="text-3xl font-bold text-white mb-6">Editar Usuário</h2>
+<h2 class="text-4xl font-bold text-white mb-6 text-left">Editar meu Perfil</h2>
 
-<div class="mx-auto bg-gray-800 p-6 rounded-lg shadow-lg max-w-lg">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
+<!-- Botão de Voltar -->
+<button onclick="history.back()" class="mt-4 py-2 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-500 transition duration-200">
+    <span class="flex items-center">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H3m12 0l-6 6m6-6l-6-6"></path>
+        </svg>
+        Voltar
+    </span>
+</button>
 
-    <div class="field">
-      <%= f.label :profile_image, "Imagem de Perfil", class: "block text-sm font-medium text-gray-300" %>
-      <%= f.file_field :profile_image, class: "mt-1 block w-full px-3 py-2 text-white rounded-md" %>
+<br><br>
+
+<div class="flex flex-col md:flex-row justify-between items-start">
+    <div class="bg-gray-800 w-full p-8 rounded-lg shadow-lg max-w-2xl mb-6 md:mb-0">
+        <%= form_with(model: resource, url: registration_path(resource_name), method: :put, local: true) do |f| %>
+            <%= render "users/shared/error_messages", resource: resource %>
+
+            <!-- Campo para Nome -->
+            <div class="field mb-6">
+                <%= f.label :name, "Nome", class: "block text-sm font-medium text-gray-300" %>
+                <%= f.text_field :name, value: resource.name, class: "mt-1 block w-full px-4 py-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+            </div>
+
+            <div class="field mb-6">
+                <%= f.label :profile_image, "Imagem de Perfil", class: "block text-sm font-medium text-gray-300" %>
+                <%= f.file_field :profile_image, class: "mt-1 block w-full px-4 py-2 text-white rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+            </div>
+
+            <div class="field mb-6">
+                <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-4 py-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+            </div>
+
+            <div class="field mb-6">
+                <%= f.label :description, class: "block text-gray-300" %>
+                <%= f.text_area :description, rows: 5, class: "mt-1 block w-full rounded-md bg-gray-700 text-gray-300 border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div class="mb-4 text-gray-400">
+                    Atualmente aguardando confirmação para: <%= resource.unconfirmed_email %>
+                </div>
+            <% end %>
+
+            <div class="field mb-6">
+                <%= f.label :current_password, "Senha Atual", class: "block text-sm font-medium text-gray-300" %>
+                <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 block w-full px-4 py-3 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
+            </div>
+
+            <div class="actions">
+                <%= f.submit "Atualizar", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+            </div>
+        <% end %>
     </div>
 
-    <div class="field mb-4">
-      <%= f.label :email, class: "block text-sm font-medium text-gray-300" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-    </div>
+    <div class="ml-0 md:ml-8 w-full md:w-1/4 bg-gray-900 p-6 rounded-lg shadow-lg">
+        <h3 class="text-lg font-semibold text-white mb-4">Cancelar minha conta</h3>
+        <p class="text-gray-300 mb-4">Você pode cancelar sua conta a qualquer momento.</p>
 
-    <div class="mb-4">
-      <%= f.label :description, class: "block text-gray-300" %>
-      <%= f.text_area :description, rows: 5, class: "mt-1 block w-full rounded-md bg-gray-700 text-gray-300 border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" %>
+        <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete, class: "w-full text-red-600 hover:text-red-500 font-semibold py-2 px-4 rounded-md border border-red-600 hover:bg-red-600 hover:text-white transition duration-200" %>
     </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div class="mb-4 text-gray-400">
-        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
-      </div>
-    <% end %>
-
-    <div class="field mb-4">
-      <%= f.label :password, class: "block text-sm font-medium text-gray-300" %> 
-      <i class="text-gray-400">(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em class="text-gray-400"><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-
-    <div class="field mb-4">
-      <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-300" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-    </div>
-
-    <div class="field mb-4">
-      <%= f.label :current_password, class: "block text-sm font-medium text-gray-300" %> 
-      <i class="text-gray-400">(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Update", class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-    </div>
-  <% end %>
 </div>
 
-<h3 class="text-lg font-semibold text-white mt-8">Cancelar minha conta</h3>
+<style>
+    /* styles.css */
+    .flex {
+        display: flex;
+    }
 
-<div class="mt-4 text-gray-300">
-  Unhappy? <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?", turbo_confirm: "Você tem certeza?" }, method: :delete, class: "text-red-600 hover:text-red-500 font-semibold" %>
-</div>
+    .justify-between {
+        justify-content: space-between;
+    }
 
-<%= link_to "Voltar", :back, class: "text-indigo-400 hover:text-indigo-300 mt-4 inline-block" %>
+    .items-start {
+        align-items: flex-start; /* Alinha os itens do contêiner ao topo */
+    }
+
+    .ml-8 {
+        margin-left: 2rem; /* 32px */
+    }
+
+    .w-1/4 {
+        width: 25%; /* A largura do painel de cancelamento */
+    }
+
+    .transition {
+        transition: all 0.2s ease; /* Suaviza a transição nos botões */
+    }
+
+    /* Estilizações adicionais */
+    @media (max-width: 768px) {
+        .ml-8 {
+            margin-left: 0; /* Remove a margem em telas pequenas */
+        }
+    }
+</style>

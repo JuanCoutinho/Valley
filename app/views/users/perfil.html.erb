@@ -1,10 +1,11 @@
+<section classw-full>
 <div class="flex flex-col md:flex-row max-w-6xl mx-auto p-6 space-y-6 md:space-y-0 md:space-x-6">
   <!-- Seção do Perfil do Usuário -->
-  <div class="w-full md:w-1/4 bg-gray-800 text-white rounded-lg p-6 shadow-lg">
+  <div class="w-full md:w-2/5 bg-gray-800 text-white rounded-lg p-6 shadow-lg">
     <h1 class="text-2xl font-bold mb-4">Perfil do Usuário</h1>
     <div class="mb-4 flex justify-center">
       <% if current_user.profile_image.attached? %>
-        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: 'rounded-full border-4 border w-32 h-32' %>
+        <%= image_tag rails_blob_url(current_user.profile_image, only_path: true), class: 'rounded-full border-4 border w-32 h-32 object-cover' %>
       <% else %>
         <div class="flex items-center justify-center w-32 h-32 bg-gray-700 rounded-full">
           <span class="text-gray-400">Sem Imagem</span>
@@ -60,7 +61,7 @@
   </div>
 
   <!-- Descrição -->
-<div class="w-full md:w-3/4 bg-gray-900 text-white rounded-lg p-6 shadow-lg border border-gray-300">
+  <div class="w-full md:w-3/5 bg-gray-900 text-white rounded-lg p-6 shadow-lg border border-gray-300">
     <h2 class="text-lg font-semibold mb-4">Descrição</h2>
     <div>
       <% if @user.description.present? %>
@@ -71,3 +72,4 @@
     </div>
   </div>
 </div>
+</section>

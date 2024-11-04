@@ -1,42 +1,3 @@
-<nav class="bg-gray-800 p-4 shadow-lg">
-    <div class="container mx-auto flex justify-between items-center">
-        <!-- Logo com tamanho ajustado -->
-        <%= link_to '#', class: 'text-white text-3xl font-bold hover:text-green-400 transition duration-300' do %>
-            Logo
-        <% end %>
-
-        <!-- Links desktop visíveis apenas em telas md+ -->
-        <div class="hidden md:flex space-x-8">
-            <%= link_to 'Cadastrar', new_registration_path(resource_name), class: 'text-gray-300 hover:text-white font-semibold transition duration-300' %>
-            <%= link_to 'Entrar', new_session_path(resource_name), class: 'text-gray-300 hover:text-white font-semibold transition duration-300' %>
-        </div>
-
-        <!-- Botão do menu mobile visível apenas em telas menores que md -->
-        <div class="md:hidden">
-            <button id="menu-button" class="text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </div>
-    </div>
-
-    <!-- Menu mobile oculto por padrão, visível em telas menores que md -->
-    <div id="mobile-menu" class="md:hidden hidden flex flex-col bg-gray-700 mt-2 py-4 px-2 rounded-lg shadow-md">
-        <%= link_to 'Cadastrar', new_registration_path(resource_name), class: 'block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-600 rounded transition duration-300' %>
-        <%= link_to 'Entrar', new_session_path(resource_name), class: 'block px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-600 rounded transition duration-300' %>
-    </div>
-</nav>
-
-<script>
-    // Lógica para abrir/fechar o menu mobile
-    document.getElementById('menu-button').addEventListener('click', function() {
-        var menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
-</script>
-
-
 <div class="flex justify-center items-center my-6 md:my-12 md:space-x-8">
   <!-- Formulário de Cadastro -->
   <div class="signup w-full md:w-1/2 p-8 bg-gray-900 bg-opacity-95 rounded-lg shadow-2xl border border-gray-700">
@@ -81,14 +42,28 @@
       <!-- Imagem de Perfil -->
       <div class="field">
         <%= f.label :profile_image, "Imagem de Perfil", class: 'block text-sm font-medium text-gray-200' %>
-        <%= f.file_field :profile_image, class: 'mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 transition duration-200' %>
+        <%= f.file_field :profile_image, class: 'mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition duration-200' %>
       </div>
+
+      <!-- Termos de Uso -->
+   <div class="field">
+  <%= f.check_box :terms, class: 'mr-2' %>
+  <label class="text-sm text-gray-200">
+    Concordo com os 
+    <%= link_to 'termos de uso', termos_path, class: 'text-blue-500 hover:underline' %>.
+  </label>
+</div>
+
 
       <!-- Botão de Cadastro -->
       <div class="actions">
-        <%= f.submit "Cadastrar", class: 'w-full bg-blue-700 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 ease-in-out' %>
+        <%= f.submit "Cadastrar", class: 'w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition-colors duration-300 ease-in-out', data: { disable_with: "Cadastrando..." } %>
       </div>
     <% end %>
+
+    <div class="text-center mt-6">
+      <%= link_to 'Já possui uma conta? Faça login', new_user_session_path, class: 'text-gray-300 hover:text-blue-500 transition duration-200' %>
+    </div>
   </div>
 </div>
 

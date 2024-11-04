@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas Frequentes do Valley</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .faq-icon {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.rotate {
+            transform: rotate(45deg); 
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+   <button onclick="history.back()" class="mt-4 p-2 px-4 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-500 transition duration-200 flex items-center shadow-lg hover:shadow-md">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span>Voltar</span>
+</button>
+
+
+    <div class="container mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4">Perguntas Frequentes
+            <p class="text-lg text-gray-400 mb-6">Encontre as respostas para as suas perguntas abaixo.</p>
+        
+        </div>
+
+        <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-gray-700 text-white" data-inactive-classes="text-gray-400">
+            <div class="bg-gray-800 rounded-lg shadow-md">
+
+                <h2 id="faq-heading-1">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-1" aria-expanded="false" aria-controls="faq-body-1">
+                        <span>Como posso criar uma conta na plataforma?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-1" class="hidden" aria-labelledby="faq-heading-1">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">Você pode criar uma conta clicando no botão "Registrar" no topo da página e preenchendo os campos obrigatórios com suas informações. Depois, você receberá um e-mail de confirmação.</p>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading-2">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-2" aria-expanded="false" aria-controls="faq-body-2">
+                        <span>É seguro investir pela plataforma?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-2" class="hidden" aria-labelledby="faq-heading-2">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">Sim, nossa plataforma utiliza os mais recentes protocolos de segurança e criptografia para garantir que todos os dados e transações sejam protegidos.</p>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading-3">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-3" aria-expanded="false" aria-controls="faq-body-3">
+                        <span>Quais são as taxas envolvidas no investimento?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-3" class="hidden" aria-labelledby="faq-heading-3">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">As taxas podem variar de acordo com o tipo de projeto e investimento. Para mais detalhes, consulte nossa página de taxas ou entre em contato com o suporte.</p>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading-4">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-4" aria-expanded="false" aria-controls="faq-body-4">
+                        <span>Quais tipos de projetos posso encontrar na plataforma?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-4" class="hidden" aria-labelledby="faq-heading-4">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">Nossa plataforma oferece uma variedade de projetos de tecnologia, desde startups inovadoras até projetos de pesquisa de alto impacto, todos disponíveis para investidores.</p>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading-5">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-5" aria-expanded="false" aria-controls="faq-body-5">
+                        <span>Posso retirar meu investimento a qualquer momento?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-5" class="hidden" aria-labelledby="faq-heading-5">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">A retirada do investimento depende dos termos específicos do projeto no qual você investiu. Por favor, verifique os detalhes de cada projeto antes de investir.</p>
+                    </div>
+                </div>
+
+                <h2 id="faq-heading-6">
+                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-left text-gray-400 border-b border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-indigo-200" data-accordion-target="#faq-body-6" aria-expanded="false" aria-controls="faq-body-6">
+                        <span>Como posso entrar em contato com o suporte?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                </h2>
+                <div id="faq-body-6" class="hidden" aria-labelledby="faq-heading-6">
+                    <div class="p-5 border-b border-gray-700">
+                        <p class="text-gray-400">Você pode entrar em contato com o suporte através do nosso chat online, enviando um e-mail para suporte@plataforma.com ou ligando para nosso número de atendimento disponível no rodapé do site.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-gray-400 p-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Valley. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <script>
+        document.querySelectorAll('[data-accordion-target]').forEach(button => {
+            button.addEventListener('click', () => {
+                const icon = button.querySelector('.faq-icon');
+                icon.classList.toggle('rotate');
+            });
+        });
+    </script>
+</body>
+</html>

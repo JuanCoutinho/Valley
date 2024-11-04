@@ -23,21 +23,20 @@
       <%= form.text_field :github_link, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out w-full" %>
     </div>
 
-    <div class="flex flex-col md:col-span-2 w-full">
-      <%= form.label :ds_project, "Descrição", class: "text-lg font-semibold text-gray-300 mb-2" %>
-      <%= form.text_area :ds_project, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
-    </div>
+<div class="flex flex-col md:col-span-2 w-full">
+  <%= form.label :ds_project, "Descrição", class: "text-lg font-semibold text-gray-300 mb-2" %>
+  <%= form.text_area :ds_project, class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 w-full h-32 transition duration-300 ease-in-out" %>
+</div>
 
     <div class="flex flex-col w-full">
       <%= form.label :investment, "Investimento Necessário", class: "text-lg font-semibold text-gray-300 mb-2" %>
       <%= form.number_field :investment, step: "0.01", class: "border border-gray-600 bg-gray-800 text-gray-200 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition duration-300 ease-in-out w-full" %>
     </div>
 
-<div class="flex flex-col w-full">
-  <%= form.label :image, "Imagem Principal", class: "text-lg font-semibold text-gray-300 mb-2" %>
-  <%= form.file_field :image, class: "flex h-10 w-full rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-sm text-gray-200 file:border-0 file:bg-gray-700 file:text-gray-200 file:text-sm file:font-medium hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" %>
-</div>
-
+    <div class="flex flex-col w-full">
+      <%= form.label :image, "Imagem Principal", class: "text-lg font-semibold text-gray-300 mb-2" %>
+      <%= form.file_field :image, class: "flex h-10 w-full rounded-md border border-gray-600 bg-gray-800 px-3 py-2 text-sm text-gray-200 file:border-0 file:bg-gray-700 file:text-gray-200 file:text-sm file:font-medium hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" %>
+    </div>
 
     <div class="flex flex-col md:col-span-2 w-full">
       <%= form.label :features, "Características", class: "text-lg font-semibold text-gray-300 mb-2" %>

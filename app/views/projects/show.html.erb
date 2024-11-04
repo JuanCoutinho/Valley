@@ -1,9 +1,16 @@
 <div class="w-full mx-auto p-4 sm:p-8 bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-lg shadow-lg">
   <p class="text-lg font-semibold mb-4">Publicado por: <%= @project.user.name if @project.user %></p>
-  
+
+<div class="mt-4">
+  <%= button_to 'Iniciar Conversa', chats_path(destination_id: @project.user.id), method: :post, class: "flex items-center bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 transition duration-200 shadow-md transform hover:scale-15" %>
+</div>
+
+
+
+
   <!-- Project Details -->
-  <div class="bg-gray-850 p-6 rounded-lg shadow-md mb-6 flex flex-col md:flex-row md:items-start">
-    <div class="flex-1 mb-4 md:mb-0 md:mr-4">
+  <div class="bg-gray-850 p-6 rounded-lg shadow-md mb-6 flex flex-col md:flex-row md:items-start space-y-6 md:space-y-0">
+    <div class="flex-1">
       <h1 class="text-4xl font-bold mb-4 text-gray-200"><%= @project.title %></h1>
       
       <% if @project.image.attached? %>
@@ -13,76 +20,132 @@
         </div>
       <% end %>
     </div>
-    
-    <div class="flex-1 space-y-4">
-      <p>
-        <strong class="text-lg text-gray-300">Objetivo:</strong>
-        <span class="block text-gray-400"><%= @project.ds_project %></span>
-      </p>
+    <div class="flex-1 space-y-6 p-5">
+  <p>
+    <strong class="text-lg text-gray-300">Descrição:</strong>
+    <span class="block text-gray-400 mt-1 text-base"><%= @project.ds_project %></span>
+  </p>
 
-      <p>
-        <strong class="text-lg text-gray-300">Funcionalidades:</strong>
-        <span class="block text-gray-400"><%= @project.features %></span>
-      </p>
+  <p>
+    <strong class="text-lg text-gray-300">Funcionalidades:</strong>
+    <span class="block text-gray-400 mt-1 text-base"><%= @project.features %></span>
+  </p>
 
-      <p>
-        <strong class="text-lg text-gray-300">Guia de Uso:</strong>
-        <span class="block text-gray-400"><%= @project.guide %></span>
-      </p>
+  <p>
+    <strong class="text-lg text-gray-300">Guia de Uso:</strong>
+    <span class="block text-gray-400 mt-1 text-base"><%= @project.guide %></span>
+  </p>
 
-      <p>
-        <strong class="text-lg text-gray-300">Link do GitHub:</strong>
-        <span class="block">
-          <%= link_to @project.github_link, @project.github_link, target: "_blank", class: "text-blue-400 hover:underline transition duration-200 transform hover:scale-105" %>
-        </span>
-      </p>
+  <p>
+    <strong class="text-lg text-gray-300">Link do GitHub:</strong>
+    <span class="block mt-1">
+      <%= link_to @project.github_link, @project.github_link, target: "_blank", class: "text-blue-400 hover:underline transition duration-200" %>
+    </span>
+  </p>
 
-      <p>
-        <strong class="text-lg text-gray-300">Investimento Necessário:</strong>
-        <span class="block">R$ <%= number_to_currency(@project.investment) %></span>
-      </p>
-    </div>
+  <p>
+    <strong class="text-lg text-gray-300">Investimento Necessário:</strong>
+    <span class="block mt-1">R$ <%= number_to_currency(@project.investment) %></span>
+  </p>
+</div>
+
   </div>
 
   <!-- Actions -->
-  <div class="flex flex-col md:flex-row justify-between items-center space-x-0 md:space-x-4 mt-6">
-    <%= link_to "Voltar a Projetos", projects_path, class: "bg-gray-700 text-white rounded-md py-2 px-4 mb-2 md:mb-0 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200 transform hover:scale-105" %>
+  <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4 mt-6">
+    <%= link_to "Voltar a Projetos", projects_path, class: "bg-gray-700 text-white rounded-md py-2 px-4 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200" %>
     
     <% if @project.user == current_user %>
       <div class="flex space-x-4">
-        <%= link_to 'Editar', edit_project_path(@project), class: "bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200 transform hover:scale-105" %>
-        <%= button_to 'Apagar', @project, method: :delete, data: { confirm: 'Tem certeza que deseja apagar este projeto?' }, class: "bg-red-700 text-white rounded-md py-2 px-4 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-200 transform hover:scale-105" %>
+        <%= link_to 'Editar', edit_project_path(@project), class: "bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200" %>
+        <%= button_to 'Apagar', @project, method: :delete, data: { confirm: 'Tem certeza que deseja apagar este projeto?' }, class: "bg-red-700 text-white rounded-md py-2 px-4 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-200" %>
       </div>
+    <% else %>
+      <!-- Botão para iniciar chat com o autor do projeto -->
+      <%= button_to 'Iniciar Chat', chats_path, method: :post, params: { destination_id: @project.user.id }, class: "bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 transition duration-200" %>
     <% end %>
   </div>
-<br><br>
-<hr>
-<section class="bg-gray-900 py-6 px-4">
-  <!-- Comments Section -->
-<h2 class="text-3xl font-bold text-white mb-4">
-  Comentários <span class="text-gray-400">(<%= @comments.count %>)</span>
-</h2>
 
+  <br><br>
+  <hr>
 
-  <%= form_with(model: [@project, @comment], local: true) do |form| %>
-    <div class="mb-6">
-      <%= form.label :body, "Seu comentário", class: "block text-gray-200 font-semibold" %>
-      <%= form.text_area :body, class: "mt-2 block w-full rounded-md bg-gray-800 border border-gray-700 text-white shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-400 focus:ring-opacity-50", rows: 3 %>
-    </div>
-    <div>
-      <%= form.submit "Comentar", class: "bg-blue-600 text-white rounded-md py-2 px-6 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200 transform hover:scale-105" %>
-    </div>
-  <% end %>
+  <section class="bg-gray-900 py-6 px-4">
+    <!-- Comments Section -->
+    <h2 class="text-3xl font-bold text-white mb-4">
+      Comentários <span class="text-gray-400">(<%= @comments.count %>)</span>
+    </h2>
+
+    <form id="comment-form" action="<%= project_comments_path(@project) %>" method="post" class="relative">
+      <%= csrf_meta_tags %>
+      <textarea id="comment-body" name="comment[body]" placeholder="Digite seu comentário..." class="w-full p-2 rounded-lg bg-gray-800 text-white"></textarea>
+      <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-lg">Adicionar Comentário</button>
+      <div id="suggestions" class="absolute bg-gray-800 rounded-lg mt-1 w-full max-h-48 overflow-y-auto z-10 hidden">
+        <!-- As sugestões serão injetadas aqui via JavaScript -->
+      </div>
+    </form>
+  </section>
 
   <div class="mt-6 space-y-4">
     <% @comments.each do |comment| %>
-      <div class="bg-gray-800 rounded-lg p-4 shadow-lg transition-transform duration-200 hover:shadow-xl">
-        <p class="text-gray-300"><strong><%= comment.user.name %>:</strong> <%= comment.body %></p>
-        <p class="text-sm text-gray-400"><%= time_ago_in_words(comment.created_at) %> atrás</p>
-        <% if comment.user == current_user %>
-          <%= link_to 'Excluir', project_comment_path(@project, comment), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este comentário?' }, class: 'text-red-400 hover:underline' %>
-        <% end %>
+      <div class="bg-gray-800 rounded-lg p-4 shadow-md transition-all duration-300 hover:shadow-xl">
+        <div class="flex justify-between">
+          <p class="text-gray-300 text-lg"><strong><%= comment.user.name %>:</strong></p>
+          <% if comment.user == current_user %>
+            <%= link_to 'Excluir', project_comment_path(@project, comment), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este comentário?' }, class: 'text-red-400 hover:underline transition duration-200' %>
+          <% end %>
+        </div>
+        <p class="text-gray-300 mt-1"><%= comment.body %></p>
+        <p class="text-sm text-gray-500 mt-2"><%= time_ago_in_words(comment.created_at) %> atrás</p>
       </div>
     <% end %>
   </div>
-</section>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const commentBody = document.getElementById("comment-body");
+  const suggestionsBox = document.getElementById("suggestions");
+
+  commentBody.addEventListener("input", function(event) {
+    const input = commentBody.value;
+    const lastAtPos = input.lastIndexOf('@');
+    
+    if (lastAtPos !== -1) {
+      const query = input.substring(lastAtPos + 1);
+      
+      fetch(`/users/autocomplete?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.length > 0) {
+            suggestionsBox.innerHTML = data.map(user => `<div class="suggestion-item cursor-pointer p-2 hover:bg-gray-700" data-username="@${user}">${user}</div>`).join('');
+            suggestionsBox.classList.remove('hidden');
+          } else {
+            suggestionsBox.classList.add('hidden');
+          }
+        })
+        .catch(error => {
+          console.error("Erro ao buscar sugestões:", error);
+        });
+    } else {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+  suggestionsBox.addEventListener('click', function(event) {
+    if (event.target.classList.contains('suggestion-item')) {
+      const username = event.target.dataset.username;
+      const currentValue = commentBody.value;
+      const lastAtPos = currentValue.lastIndexOf('@');
+      const newValue = currentValue.substring(0, lastAtPos) + username + ' ';
+      commentBody.value = newValue;
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener("click", function(event) {
+    if (!suggestionsBox.contains(event.target) && event.target !== commentBody) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
+});
+</script>

@@ -1,24 +1,54 @@
 <div class="flex flex-col p-4 space-y-4 bg-gray-900 text-white">
   <h2 class="text-3xl font-bold mb-4">Chats</h2>
 
-  <% @users.each do |user| %>
-    <div class="flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ease-in-out">
-      <div class="flex items-center space-x-4">
-        <% if user.profile_image.attached? %>
-          <%= image_tag rails_blob_url(user.profile_image, only_path: true), class: "w-12 h-12 rounded-full object-cover" %>
-        <% else %>
-          <%= image_tag '/images/default_profile_image.png', class: "w-12 h-12 rounded-full object-cover" %>
-        <% end %>
-        <div class="flex flex-col">
-          <span class="text-lg font-semibold"><%= user.name %></span>
-          <span class="text-sm text-gray-400"><%= user.user_type %></span>
-        </div>
-      </div>
-     <%= button_to url: chats_path, method: :post, params: { destination_id: user.id }, class: "bg-teal-500 text-white flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-teal-600 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-400" do %>
-  <i class="bi bi-chat text-lg"></i>
-  <span class="font-semibold p-1">Chat</span>
-<% end %>
+  <!-- Campo de pesquisa -->
+  <div class="mb-4">
+    <input
+      type="text"
+      placeholder="Pesquisar usuários..."
+      class="w-full p-2 bg-gray-800 text-white border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 transition duration-300"
+      id="searchInput"
+      oninput="filterUsers()"
+    />
+  </div>
 
-    </div>
-  <% end %>
+  <!-- Lista de usuários -->
+  <div id="userList">
+    <% @users.each do |user| %>
+      <div class="user-item flex items-center justify-between p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ease-in-out">
+        <div class="flex items-center space-x-4">
+          <% if user.profile_image.attached? %>
+            <%= image_tag rails_blob_url(user.profile_image, only_path: true), class: "w-12 h-12 rounded-full object-cover" %>
+          <% else %>
+            <%= image_tag '/images/default_profile_image.png', class: "w-12 h-12 rounded-full object-cover" %>
+          <% end %>
+          <div class="flex flex-col">
+            <span class="text-lg font-semibold"><%= user.name %></span>
+            <span class="text-sm text-gray-400"><%= user.user_type %></span>
+          </div>
+        </div>
+        <%= button_to url: chats_path, method: :post, params: { destination_id: user.id }, class: "bg-teal-500 text-white flex items-center space-x-2 px-4 py-2 rounded-lg transition duration-300 ease-in-out hover:bg-teal-600 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-teal-400" do %>
+          <i class="bi bi-chat text-lg"></i>
+          <span class="font-semibold p-1">Chat</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<script>
+  function filterUsers() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const userItems = document.querySelectorAll('.user-item');
+
+    userItems.forEach(user => {
+      const userName = user.querySelector('.font-semibold').textContent.toLowerCase();
+      if (userName.includes(filter)) {
+        user.style.display = ''; // Exibe o item
+      } else {
+        user.style.display = 'none'; // Oculta o item
+      }
+    });
+  }
+</script>

@@ -12,13 +12,12 @@ class PostsController < ApplicationController # rubocop:disable Style/Documentat
   end
 
   def edit; end
-
   def create
-    @post = Post.new(post_params)
-
+    @post = current_user.posts.build(post_params) # Associa a postagem ao usuário logado
+  
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Postagem criada com Sucesso!." }
+        format.html { redirect_to post_url(@post), notice: "Postagem criada com Sucesso!" }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -26,6 +25,7 @@ class PostsController < ApplicationController # rubocop:disable Style/Documentat
       end
     end
   end
+  
 
   def update
     respond_to do |format|

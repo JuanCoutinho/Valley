@@ -98,6 +98,6 @@ class ProjectsController < ApplicationController # rubocop:disable Style/Documen
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, :status, :features, :image, :guide, :github_link, :images, :investment)
+    params.require(:project).permit(:title, :ds_project, :status, :features, :image, :guide, :github_link, :images, :investment)
   end
 end
