@@ -10,51 +10,50 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
   <%= turbo_include_tags %>
-  
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
+
   <style>
-    .sidebar {
-      z-index: 99999999;
-    }
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .sidebar {
+      z-index: 9999;
     }
   </style>
 </head>
 
-<body class="text-white bg-gray-900 font-montserrat">
+<body class="text-white bg-gray-900">
   <% unless controller_name.in?(%w[registrations sessions]) %>
-  <div class="flex flex-col lg:flex-row h-screen w-full">
-    <!-- Sidebar -->
-    <aside class="w-full lg:w-64 bg-gradient-to-r from-gray-900 to-gray-800 p-0 shadow-lg fixed inset-y-0 left-0 sidebar transition-transform duration-300 transform -translate-x-full lg:translate-x-0 lg:block">
-      <%= render 'shared/sidebar' %>
-    </aside>
+    <div class="flex flex-col lg:flex-row h-screen w-full">
 
-    <!-- Content Area -->
-    <div class="flex-1 flex flex-col lg:ml-64 p-4 lg:p-8 w-full">
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" class="mobile-menu-button p-2 text-gray-400 lg:hidden z-40">
-        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <aside class="w-full lg:w-64 bg-gradient-to-r from-gray-900 to-gray-800 shadow-lg fixed inset-y-0 left-0 sidebar transition-transform duration-300 transform -translate-x-full lg:translate-x-0">
+        <%= render 'shared/sidebar' %>
+      </aside>
 
-      <% if user_signed_in? %>
-        <%= render 'shared/notice_alert' %>
-      <% end %>
+      <div class="flex-1 flex flex-col lg:ml-64 p-4 lg:p-8">
 
-      <!-- Main Content -->
-      <%= render "shared/vlibras" %>
-      <%= yield %>
-      <%= render "shared/footer" %>
+        <button id="mobile-menu-button" class="p-2 text-gray-400 lg:hidden z-40">
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <% if user_signed_in? %>
+          <%= render 'shared/notice_alert' %>
+        <% end %>
+
+        <%= render "shared/vlibras" %>
+        <%= yield %>
+        <%= render "shared/footer" %>
+      </div>
     </div>
-  </div>
-
   <% else %>
-    <div class="flex-1 flex flex-col lg:p-8 w-full p-4 lg:p-8"> <!-- Responsivo com padding adequado -->
+
+    <div class="flex-1 flex flex-col p-4 lg:p-8">
       <% if user_signed_in? %>
         <%= render 'shared/notice_alert' %>
       <% end %>
@@ -64,10 +63,8 @@
   <% end %>
 
   <script>
-    // Script para controlar o menu mobile
     document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
-      const sidebar = document.querySelector('.sidebar');
-      sidebar.classList.toggle('-translate-x-full');
+      document.querySelector('.sidebar').classList.toggle('-translate-x-full');
     });
   </script>
 </body>
