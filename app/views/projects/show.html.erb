@@ -4,11 +4,6 @@
 <div class="mt-4">
   <%= button_to 'Iniciar Conversa', chats_path(destination_id: @project.user.id), method: :post, class: "flex items-center bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 transition duration-200 shadow-md transform hover:scale-15" %>
 </div>
-
-
-
-
-  <!-- Project Details -->
   <div class="bg-gray-850 p-6 rounded-lg shadow-md mb-6 flex flex-col md:flex-row md:items-start space-y-6 md:space-y-0">
     <div class="flex-1">
       <h1 class="text-4xl font-bold mb-4 text-gray-200"><%= @project.title %></h1>

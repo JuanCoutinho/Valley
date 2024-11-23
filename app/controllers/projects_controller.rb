@@ -5,10 +5,10 @@ class ProjectsController < ApplicationController # rubocop:disable Style/Documen
 
   def index
     @projects = if params[:query].present?
-                  Project.where('title LIKE ?', "%#{params[:query]}%")
-                else
-                  Project.all
-                end
+      Project.where('title LIKE ?', "%#{params[:query]}%")
+          else
+      Project.all
+    end
   end
 
   def show; end

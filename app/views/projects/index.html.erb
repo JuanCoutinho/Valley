@@ -32,14 +32,17 @@
 
         <div class="flex justify-between items-center mt-4">
           <% if user_signed_in? %>
-            <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-blue-600 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-blue-700" do %>
-              <%= image_tag 'https://cdn-icons-png.flaticon.com/512/5182/5182878.png', alt: 'Curtir', class: 'w-6 h-6 mr-2' %>
-              <span id="like_count_<%= project.id %>" class="text-sm"><%= project.likes_count || 0 %></span>
-            <% end %>
+         <%= button_to toggle_like_project_path(project), method: :post, remote: true, id: "like_button_#{project.id}", class: "flex items-center p-2 bg-blue-600 text-gray-300 rounded-lg transition-colors duration-300 hover:bg-blue-700" do %>
+  <i class="fas fa-thumbs-up w-6 h-6 mr-2"></i>
+  <span id="like_count_<%= project.id %>" class="text-sm"><%= project.likes_count || 0 %></span>
+<% end %>
+
           <% end %>
-          
-          <%= link_to 'Ver Projeto', project, class: "bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md" %>
-        </div>
+     <%= link_to project, class: "bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md flex items-center justify-center" do %>
+  <%= image_tag 'https://cdn-icons-png.flaticon.com/512/709/709586.png', alt: 'Ícone Ver Projeto', class: 'w-4 h-4 mr-2' %>
+  Ver Projeto
+<% end %>
+   </div>
       </div>
     </div>
   <% end %>

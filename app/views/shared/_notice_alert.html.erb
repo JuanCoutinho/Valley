@@ -1,3 +1,23 @@
 <p class="text-blue-500 mb-2 bg-gray-800 p-4 rounded-lg shadow-lg border-l-4 border-blue-500">
  <%= notice %>
 </p>
+
+<script>
+const translations = {
+  "Signed in successfully.": "Login realizado com sucesso.",
+  "Signed out successfully.": "Logout realizado com sucesso.",
+  "Welcome! You have signed up successfully.": "Bem-vindo! Você se cadastrou com sucesso.",
+  "Your session expired. Please sign in again to continue.": "Sua sessão expirou. Por favor, faça login novamente.",
+
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const noticeElement = document.querySelector('.text-blue-500'); // Seleciona o elemento da mensagem
+
+  if (noticeElement && translations[noticeElement.textContent.trim()]) {
+    noticeElement.textContent = translations[noticeElement.textContent.trim()];
+  }
+});
+
+</script>
