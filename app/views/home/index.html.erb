@@ -8,80 +8,44 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white">
-    <header class="bg-gray-800 shadow-md sticky top-0 z-50">
-        <div class="flex justify-between items-center p-4 max-w-7xl mx-auto">
-            <div class="flex items-center">
-                <%= image_tag 'valley.png', class: 'h-12 md:h-16' %>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <%= link_to 'Eu quero investir', new_user_registration_path, class: 'text-gray-300 font-semibold hover:text-blue-500 transition duration-200' %>
-                <%= link_to 'Eu quero publicar projetos', creator_path, class: 'text-gray-300 font-semibold hover:text-blue-500 transition duration-200' %>
-            </nav>
-            <div class="hidden md:flex items-center space-x-4">
-                <%= link_to 'Faça login', '#', class: 'text-gray-300 hover:text-blue-500 transition duration-200' %>
-                <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition duration-200">Cadastre-se</a>
-            </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-300 focus:outline-none hover:text-blue-500 transition duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <nav id="menu" class="hidden md:hidden bg-gray-800 shadow-md">
-            <div class="flex flex-col items-center space-y-4 py-4">
-                <%= link_to 'Eu quero investir', new_user_registration_path, class: 'text-gray-300 font-semibold hover:text-blue-500 transition duration-200' %>
-                <%= link_to 'Eu quero publicar projetos', new_user_registration_path, class: 'text-gray-300 font-semibold hover:text-blue-500 transition duration-200' %>
-                <%= link_to 'Faça login', '#', class: 'text-gray-300 hover:text-blue-500 transition duration-200' %>
-                <a href="#" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition duration-200">Cadastre-se</a>
-            </div>
-        </nav>
-    </header>
-
-    <section class="flex flex-col-reverse md:flex-row justify-between items-center px-6 md:px-10 py-6 md:py-10 mx-auto max-w-7xl">
-        <div class="w-full md:w-1/2 space-y-8 text-center md:text-left">
-            <div class="flex justify-center md:justify-start space-x-4 text-gray-400 text-sm">
-                <div class="flex items-center space-x-1">
-                    <span>✔️</span>
-                    <span>Publicação gratuita</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <span>🛡️</span>
-                    <span>Satisfação garantida</span>
-                </div>
-                <div class="flex items-center space-x-1">
-                    <span>💸</span>
-                    <span>Pagamentos protegidos</span>
-                </div>
-            </div>
-
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight">Projetos qualificados</h1>
-            <h2 class="text-3xl md:text-5xl font-bold leading-tight">Prontos para receber seu investimento <span class="text-cyan-500">hoje mesmo</span></h2>
-            <p class="text-gray-400 text-lg md:text-xl">Conecte-se com milhares de projetos. Pague de forma segura e invista em tecnologia e muito mais.</p>
-            <div class="flex flex-col md:flex-row items-center justify-center md:justify-start space-x-0 md:space-x-4 space-y-4 md:space-y-0 mt-8">
-                <%= link_to 'Eu quero investir', new_user_registration_path, class: 'bg-blue-600 text-white px-8 py-4 rounded-md text-lg md:text-xl hover:bg-teal-600 transition duration-200 shadow-lg hover:shadow-teal-500/50' %>
-                <%= link_to 'Você quer publicar projetos?', new_user_registration_path, class: 'text-blue-500 text-lg md:text-xl hover:underline transition duration-200' %>
-            </div>
-        </div>
-        <div class="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-            <%= image_tag 'investidor.png', class: 'w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg transition-transform transform hover:scale-105' %>
-        </div>        
-    </section>
-
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const menu = document.getElementById('menu');
-
-        menuBtn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+<body>
+<header class="border-b border-gray-200">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <%= image_tag "valley-dark.png", alt: "Logo", class: "w-20 h-20" %>
+    </div>
+    <div class="hidden md:flex space-x-8">
+      <%= link_to "Home", root_path, class: "text-gray-600 hover:text-black" %>
+      <%= link_to "Funcionalidades", "#features", class: "text-gray-600 hover:text-black" %>
+      <%= link_to "Preço", "#pricing", class: "text-gray-600 hover:text-black" %>
+      <%= link_to "Dúvidas", "#faq", class: "text-gray-600 hover:text-black" %>
+    </div>
+    <div class="flex space-x-4">
+      <%= link_to "Entrar", new_user_session_path, class: "px-4 py-2 border border-gray-900 text-gray-900 rounded-full hover:bg-gray-100" %>
+      <%= link_to "Registrar", new_user_registration_path, class: "px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 hidden md:block" %>
+      <%= link_to "Comece agora", new_user_registration_path, class: "px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800" %>
+    </div>
+  </nav>
+</header>
+<main class="max-w-4xl mx-auto text-center py-16 px-6">
+  <div class="flex flex-col items-center space-y-6">
+    <div class="flex items-center justify-center rounded-md">
+      <%= image_tag "valley-dark.png", style: "height: 80%;" %>
+    </div>
+    <p class="text-dark" style="margin-top: -15%; font-size: 2rem;">
+      Conectando o amanhã!
+    </p>
+    <div class="flex space-x-4">
+      <%= link_to "Como funciona", "#how-it-works", class: "px-4 py-2 border text-gray-900 rounded-full hover:bg-gray-100" %>
+      <%= link_to "Experimente agora", new_user_registration_path, class: "px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800" %>
+    </div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 </html>
 <% end %>
+
 
 <% if user_signed_in? %>
 <!DOCTYPE html>

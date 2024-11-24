@@ -55,9 +55,6 @@
         <%= link_to 'Editar', edit_project_path(@project), class: "bg-blue-700 text-white rounded-md py-2 px-4 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200" %>
         <%= button_to 'Apagar', @project, method: :delete, data: { confirm: 'Tem certeza que deseja apagar este projeto?' }, class: "bg-red-700 text-white rounded-md py-2 px-4 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-200" %>
       </div>
-    <% else %>
-      <!-- Botão para iniciar chat com o autor do projeto -->
-      <%= button_to 'Iniciar Chat', chats_path, method: :post, params: { destination_id: @project.user.id }, class: "bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-400 transition duration-200" %>
     <% end %>
   </div>
 

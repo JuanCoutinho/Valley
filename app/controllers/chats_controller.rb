@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   end
 
   def usuarios
-    @users = User.all # ou outra lógica para obter os usuários
+    @users = User.all 
   end
 
   def create
